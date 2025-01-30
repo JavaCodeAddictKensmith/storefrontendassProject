@@ -160,344 +160,103 @@ const DashboardPage = () => {
                 </div>
             </div>
 
-            <StoreSessionsCard />
+            {/* <StoreSessionsCard /> */}
             {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"> */}
-            <div className="flex w-full flex-wrap gap-4">
-                <div className="min-h-[240px] rounded-md border border-gray-300 bg-white p-4 pb-6 shadow-sm md:min-w-[40%] lg:min-w-[32%]">
-                    <div className="card-header">
-                        <div className="flex w-full items-center justify-between">
+            <div className="container mx-auto">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="min-h-[240px] rounded-md border border-gray-300 bg-white p-6 shadow-sm">
+                        <div className="flex items-center justify-between">
                             <h2 className="text-lg font-semibold">Store Sessions</h2>
                             <img
                                 src={documentTextIcon}
                                 alt="Analytics Icon"
-                                className="w-4 flex-shrink-0"
+                                className="w-4"
                             />
                         </div>
-                    </div>
 
-                    <p className="text-3xl font-bold">0 -</p>
+                        <p className="mt-2 text-3xl font-bold">0 -</p>
 
-                    <div className="mt-3 flex w-full items-center gap-2">
-                        <div>₦10</div> <div className="h-[2px] flex-1 bg-[#CDD0D5] line-through"></div>
-                    </div>
+                        <div className="mt-3 flex items-center gap-2">
+                            <div>₦10</div>
+                            <div className="h-[2px] flex-1 bg-gray-300 line-through"></div>
+                        </div>
 
-                    <div className="mt-3 flex w-full items-center gap-2">
-                        <div>₦10</div> <div className="h-[2px] flex-1 bg-[#CDD0D5] line-through"></div>
-                    </div>
+                        <div className="mt-3 flex items-center gap-2">
+                            <div>₦10</div>
+                            <div className="h-[2px] flex-1 bg-gray-300 line-through"></div>
+                        </div>
 
-                    <div className="mt-3 flex w-full items-center gap-2">
-                        <div>₦10</div>
-                        <div className="flex flex-1 items-center justify-between gap-2">
-                            {" "}
-                            {/* <div className="flex w-[30%] items-center">
+                        <div className="mt-3 flex items-center gap-2">
+                            <div>₦10</div>
+                            {/* <div className="flex flex-1 items-center justify-between">
+                                <div className="w-full border-t-2 border-dashed border-red-700"></div>
+                            </div> */}
+                            <div className="flex flex-1 items-center justify-between gap-2">
+                                {" "}
+                                {/* <div className="flex w-[30%] items-center">
                                 <div className="h-[2px] w-full bg-[#AE4551] line-through"></div>
                             </div> */}
-                            {/* <div className="flex justify-center font-bold text-[#E0B7BB]"> - - - - - - - - - - - -</div> */}
-                            {/* <hr className="my-4 h-2 border-t-2 border-dashed border-gray-400" /> */}
-                            <div className="flex w-full items-center space-x-2">
-                                <div className="h-0.5 w-[35%] bg-[#AE4551]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                {/* <div className="flex justify-center font-bold text-[#E0B7BB]"> - - - - - - - - - - - -</div> */}
+                                {/* <hr className="my-4 h-2 border-t-2 border-dashed border-gray-400" /> */}
+                                <div className="flex w-full items-center space-x-2">
+                                    <div className="h-0.5 w-[35%] bg-[#AE4551]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                    <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="mt-7 flex justify-end gap-4 text-sm text-gray-600">
+                            <div className="flex items-center gap-1">
+                                <div className="h-[2px] w-4 bg-[#AE4551]"></div>
+                                <span>Aug 19, 2024</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                                <div className="w-4 border-t-2 border-dashed border-red-700 opacity-50"></div>
+                                <span>Aug 18, 2024</span>
                             </div>
                         </div>
                     </div>
-                    <div className="mt-3 flex w-full items-center justify-between gap-2">
-                        <div></div>{" "}
-                        <div className="flex h-[2px] flex-1 justify-between">
-                            <div className="text-sm text-[#777F8C]">12:00 AM</div>
-                            <div className="text-sm text-[#777F8C]">5:00 AM</div>
-                            <div className="text-sm text-[#777F8C]">10:00 AM</div>
-                            <div className="text-sm text-[#777F8C]">10:00 AM</div>
-                        </div>
-                    </div>
 
-                    <div className="mt-7 flex items-center justify-end gap-4 text-sm text-gray-600">
-                        <div className="flex items-center gap-1">
-                            <div className="h-[2px] w-4 bg-red-700"></div>
-                            <span>Aug 19, 2024</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <div className="w-4 border-t-2 border-dashed border-red-700 opacity-50"></div> <span>Aug 18, 2024</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* second card */}
-
-                <div className="min-h-[240px] rounded-md border border-gray-300 bg-white p-4 pb-6 shadow-sm md:min-w-[40%] lg:min-w-[32%]">
-                    <div className="card-header">
-                        <div className="flex w-full items-center justify-between">
-                            <h2 className="text-lg font-semibold">Store Sessions</h2>
-                            <img
-                                src={documentTextIcon}
-                                alt="Analytics Icon"
-                                className="w-4 flex-shrink-0"
-                            />
-                        </div>
-                    </div>
-
-                    <p className="text-3xl font-bold">0 -</p>
-
-                    <div className="mt-3 flex w-full items-center gap-2">
-                        <div>₦10</div> <div className="h-[2px] flex-1 bg-[#CDD0D5] line-through"></div>
-                    </div>
-
-                    <div className="mt-3 flex w-full items-center gap-2">
-                        <div>₦10</div> <div className="h-[2px] flex-1 bg-[#CDD0D5] line-through"></div>
-                    </div>
-
-                    <div className="mt-3 flex w-full items-center gap-2">
-                        <div>₦10</div>
-                        <div className="flex flex-1 items-center justify-between gap-2">
-                            {" "}
-                            {/* <div className="flex w-[30%] items-center">
-                                <div className="h-[2px] w-full bg-[#AE4551] line-through"></div>
-                            </div> */}
-                            {/* <div className="flex justify-center font-bold text-[#E0B7BB]"> - - - - - - - - - - - -</div> */}
-                            {/* <hr className="my-4 h-2 border-t-2 border-dashed border-gray-400" /> */}
-                            <div className="flex w-full items-center space-x-2">
-                                <div className="h-0.5 w-[35%] bg-[#AE4551]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
+                    {/* Second Card */}
+                    <div className="min-h-[240px] rounded-md border border-gray-300 bg-white p-6 shadow-sm">
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-lg font-semibold">Total Customers</h2>
+                            <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500">
+                                <Users size={26} />
                             </div>
                         </div>
-                    </div>
-                    <div className="mt-3 flex w-full items-center justify-between gap-2">
-                        <div></div>{" "}
-                        <div className="flex h-[2px] flex-1 justify-between">
-                            <div className="text-sm text-[#777F8C]">12:00 AM</div>
-                            <div className="text-sm text-[#777F8C]">5:00 AM</div>
-                            <div className="text-sm text-[#777F8C]">10:00 AM</div>
-                            <div className="text-sm text-[#777F8C]">10:00 AM</div>
-                        </div>
-                    </div>
 
-                    <div className="mt-7 flex items-center justify-end gap-4 text-sm text-gray-600">
-                        <div className="flex items-center gap-1">
-                            <div className="h-[2px] w-4 bg-red-700"></div>
-                            <span>Aug 19, 2024</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <div className="w-4 border-t-2 border-dashed border-red-700 opacity-50"></div> <span>Aug 18, 2024</span>
-                        </div>
-                    </div>
-                </div>
-
-                {/* third */}
-
-                {/* <div className="min-h-[240px] rounded-md border border-gray-300 bg-white p-4 pb-6 shadow-sm md:min-w-[374px] lg:min-w-[374px]"> */}
-
-                <div className="sm:[100%] min-h-[240px] rounded-md border border-gray-300 bg-white p-4 pb-6 shadow-sm md:min-w-[40%] lg:min-w-[32%]">
-                    <div className="card-header">
-                        <div className="flex w-full items-center justify-between">
-                            <h2 className="text-lg font-semibold">Store Sessions</h2>
-                            <img
-                                src={documentTextIcon}
-                                alt="Analytics Icon"
-                                className="w-4 flex-shrink-0"
-                            />
-                        </div>
-                    </div>
-
-                    <p className="text-3xl font-bold">0 -</p>
-
-                    <div className="mt-3 flex w-full items-center gap-2">
-                        <div>₦10</div> <div className="h-[2px] flex-1 bg-[#CDD0D5] line-through"></div>
-                    </div>
-
-                    <div className="mt-3 flex w-full items-center gap-2">
-                        <div>₦10</div> <div className="h-[2px] flex-1 bg-[#CDD0D5] line-through"></div>
-                    </div>
-
-                    <div className="mt-3 flex w-full items-center gap-2">
-                        <div>₦10</div>
-                        <div className="flex flex-1 items-center justify-between gap-2">
-                            {" "}
-                            {/* <div className="flex w-[30%] items-center">
-                                <div className="h-[2px] w-full bg-[#AE4551] line-through"></div>
-                            </div> */}
-                            {/* <div className="flex justify-center font-bold text-[#E0B7BB]"> - - - - - - - - - - - -</div> */}
-                            {/* <hr className="my-4 h-2 border-t-2 border-dashed border-gray-400" /> */}
-                            <div className="flex w-full items-center space-x-2">
-                                <div className="h-0.5 w-[35%] bg-[#AE4551]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                                <div className="h-0.5 w-[3%] bg-[#E0B7BB]"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="mt-3 flex w-full items-center justify-between gap-2">
-                        <div></div>{" "}
-                        <div className="flex h-[2px] flex-1 justify-between">
-                            <div className="text-sm text-[#777F8C]">12:00 AM</div>
-                            <div className="text-sm text-[#777F8C]">5:00 AM</div>
-                            <div className="text-sm text-[#777F8C]">10:00 AM</div>
-                            <div className="text-sm text-[#777F8C]">10:00 AM</div>
-                        </div>
-                    </div>
-
-                    <div className="mt-7 flex items-center justify-end gap-4 text-sm text-gray-600">
-                        <div className="flex items-center gap-1">
-                            <div className="h-[2px] w-4 bg-red-700"></div>
-                            <span>Aug 19, 2024</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                            <div className="w-4 border-t-2 border-dashed border-red-700 opacity-50"></div> <span>Aug 18, 2024</span>
-                        </div>
-                    </div>
-                </div>
-                {/* stops here */}
-
-                <div className="card">
-                    <div className="card-header">
-                        <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
-                            <Users size={26} />
-                        </div>
-                        <p className="card-title">Total Customers</p>
-                    </div>
-                    <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">15,400k</p>
-                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
+                        <p className="mt-2 text-3xl font-bold text-gray-900">15,400k</p>
+                        <span className="mt-2 flex w-fit items-center gap-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500">
                             <TrendingUp size={18} />
                             15%
                         </span>
                     </div>
-                </div>
-                <div className="card">
-                    <div className="card-header">
-                        <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500 transition-colors dark:bg-blue-600/20 dark:text-blue-600">
-                            <CreditCard size={26} />
+
+                    {/* Third Card */}
+                    <div className="min-h-[240px] rounded-md border border-gray-300 bg-white p-6 shadow-sm">
+                        <div className="flex items-center justify-between">
+                            <h2 className="text-lg font-semibold">Sales</h2>
+                            <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500">
+                                <CreditCard size={26} />
+                            </div>
                         </div>
-                        <p className="card-title">Sales</p>
-                    </div>
-                    <div className="card-body bg-slate-100 transition-colors dark:bg-slate-950">
-                        <p className="text-3xl font-bold text-slate-900 transition-colors dark:text-slate-50">12,340</p>
-                        <span className="flex w-fit items-center gap-x-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500 dark:border-blue-600 dark:text-blue-600">
+
+                        <p className="mt-2 text-3xl font-bold text-gray-900">12,340</p>
+                        <span className="mt-2 flex w-fit items-center gap-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500">
                             <TrendingUp size={18} />
                             19%
                         </span>
-                    </div>
-                </div>
-            </div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7">
-                <div className="card col-span-1 md:col-span-2 lg:col-span-4">
-                    <div className="card-header">
-                        <p className="card-title">Overview</p>
-                    </div>
-                    <div className="card-body p-0">
-                        <ResponsiveContainer
-                            width="100%"
-                            height={300}
-                        >
-                            <AreaChart
-                                data={overviewData}
-                                margin={{
-                                    top: 0,
-                                    right: 0,
-                                    left: 0,
-                                    bottom: 0,
-                                }}
-                            >
-                                <defs>
-                                    <linearGradient
-                                        id="colorTotal"
-                                        x1="0"
-                                        y1="0"
-                                        x2="0"
-                                        y2="1"
-                                    >
-                                        <stop
-                                            offset="5%"
-                                            stopColor="#2563eb"
-                                            stopOpacity={0.8}
-                                        />
-                                        <stop
-                                            offset="95%"
-                                            stopColor="#2563eb"
-                                            stopOpacity={0}
-                                        />
-                                    </linearGradient>
-                                </defs>
-                                <Tooltip
-                                    cursor={false}
-                                    formatter={(value) => `$${value}`}
-                                />
-
-                                <XAxis
-                                    dataKey="name"
-                                    strokeWidth={0}
-                                    stroke={theme === "light" ? "#475569" : "#94a3b8"}
-                                    tickMargin={6}
-                                />
-                                <YAxis
-                                    dataKey="total"
-                                    strokeWidth={0}
-                                    stroke={theme === "light" ? "#475569" : "#94a3b8"}
-                                    tickFormatter={(value) => `$${value}`}
-                                    tickMargin={6}
-                                />
-
-                                <Area
-                                    type="monotone"
-                                    dataKey="total"
-                                    stroke="#2563eb"
-                                    fillOpacity={1}
-                                    fill="url(#colorTotal)"
-                                />
-                            </AreaChart>
-                        </ResponsiveContainer>
-                    </div>
-                </div>
-                <div className="card col-span-1 md:col-span-2 lg:col-span-3">
-                    <div className="card-header">
-                        <p className="card-title">Recent Sales</p>
-                    </div>
-                    <div className="card-body h-[300px] overflow-auto p-0">
-                        {recentSalesData.map((sale) => (
-                            <div
-                                key={sale.id}
-                                className="flex items-center justify-between gap-x-4 py-2 pr-2"
-                            >
-                                <div className="flex items-center gap-x-4">
-                                    <img
-                                        src={sale.image}
-                                        alt={sale.name}
-                                        className="size-10 flex-shrink-0 rounded-full object-cover"
-                                    />
-                                    <div className="flex flex-col gap-y-2">
-                                        <p className="font-medium text-slate-900 dark:text-slate-50">{sale.name}</p>
-                                        <p className="text-sm text-slate-600 dark:text-slate-400">{sale.email}</p>
-                                    </div>
-                                </div>
-                                <p className="font-medium text-slate-900 dark:text-slate-50">${sale.total}</p>
-                            </div>
-                        ))}
                     </div>
                 </div>
             </div>

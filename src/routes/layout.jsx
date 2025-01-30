@@ -34,17 +34,16 @@ const Layout = () => {
                 )}
             />
 
-               <Header
-                    collapsed={collapsed}
-                    setCollapsed={setCollapsed}
-                />
+            <Header
+                collapsed={collapsed}
+                setCollapsed={setCollapsed}
+            />
             <Sidebar
                 ref={sidebarRef}
                 collapsed={collapsed}
             />
             <div className={cn("transition-[margin] duration-300", collapsed ? "md:ml-[70px]" : "md:ml-[240px]")}>
-             
-                <div className="h-[calc(100vh-60px)] overflow-y-auto overflow-x-hidden p-6">
+                <div className="h-[calc(100vh-60px)] overflow-y-auto overflow-x-hidden px-4 py-6">
                     <Outlet />
                 </div>
             </div>
