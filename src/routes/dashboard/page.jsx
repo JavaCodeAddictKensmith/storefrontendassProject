@@ -1,23 +1,96 @@
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import { Search, Sun } from "lucide-react";
+import { Search } from "lucide-react";
 
 import { useTheme } from "@/hooks/use-theme";
 
-import { overviewData, recentSalesData, topProducts } from "@/constants";
 import StoreSessionsCard from "./StoreSessionCard";
 
 import { Footer } from "@/layouts/footer";
 
-import { CreditCard, DollarSign, TrendingUp, Users } from "lucide-react";
 import documentTextIcon from "@/assets/svgs/document-text.svg";
 import globalIcon from "@/assets/svgs/global.svg";
 
 import tickSqaureIcon from "@/assets/svgs/tick-square.svg";
 import calenderIcon from "@/assets/svgs/calendar-2.svg";
 import arrow3Icon from "@/assets/svgs/arrow-3.svg";
+import googleIcon from "@/assets/svgs/googleblue.svg";
+import faceBookIcon from "@/assets/svgs/facebookicon.svg";
+import instagramIcon from "@/assets/svgs/instagramicon.svg";
+import twitterIcon from "@/assets/svgs/twitter.svg";
 
 const DashboardPage = () => {
-    const { theme } = useTheme();
+    // const { theme } = useTheme();
+
+    const dummyData = {
+        headers: [
+            { id: 1, text: "Source" },
+            { id: 2, text: "impressions" },
+            { id: 3, text: "Clicks" },
+            { id: 4, text: "Revenue" },
+        ],
+        rows: [
+            {
+                bidAmount: 1,
+                name: "Facebook",
+                imp: "35",
+                clicks: "5",
+                revenue: "₦ 22,035.00",
+            },
+
+            {
+                bidAmount: 2,
+                name: "Instagram",
+                imp: "35",
+                clicks: "5",
+                revenue: "₦ 22,035.00",
+            },
+            {
+                bidAmount: 3,
+                name: "Twitter",
+                imp: "35",
+                clicks: "5",
+                revenue: "₦ 22,035.00",
+            },
+            {
+                bidAmount: 4,
+                name: "Google",
+                imp: "35",
+                clicks: "5",
+                revenue: "₦ 22,035.00",
+            },
+        ],
+    };
+
+    const dummyData2 = {
+        headers: [
+            { id: 1, text: "Customer" },
+            { id: 2, text: "CLTV" },
+            { id: 3, text: "Revenue" },
+        ],
+        rows: [
+            {
+                bidAmount: 1,
+                name: "Veres Panas",
+                cont: "202 Purchases",
+                ctv: "202",
+                revenue: "₦ 22,035.00",
+            },
+
+            {
+                bidAmount: 2,
+                name: "Mikso Fruzino",
+                cont: "202 Purchases",
+                ctv: "202",
+                revenue: "₦ 22,035.00",
+            },
+            {
+                bidAmount: 3,
+                name: "Mikso Fruzino",
+                cont: "202 Purchases",
+                ctv: "202",
+                revenue: "₦ 22,035.00",
+            },
+        ],
+    };
 
     return (
         <div className="flex flex-col gap-y-4">
@@ -215,6 +288,18 @@ const DashboardPage = () => {
                             </div>
                         </div>
 
+                        <div className="mt-1 flex items-center gap-2">
+                            {/* <div>N10</div> */}
+                            <div className="t flex justify-between gap-4 pl-7 text-[12px] text-[#777F8C]">
+                                <span className="text-[12px]">12:00AM</span>
+                                <span className="text-[12px]">5:00AM </span>
+                                <span className="text-[12px]">10:00AM </span>
+                                <span className="text-[12px]">3:00PM</span>
+                                <span className="text-[12px]">8:00PM</span>
+                                {/* {"12:00AM  5:00AM  10:00AM  3:00PM 8:00PM "} */}
+                            </div>
+                        </div>
+
                         <div className="mt-7 flex justify-end gap-4 text-sm text-gray-600">
                             <div className="flex items-center gap-1">
                                 <div className="h-[2px] w-4 bg-[#AE4551]"></div>
@@ -226,38 +311,218 @@ const DashboardPage = () => {
                             </div>
                         </div>
                     </div>
-
                     {/* Second Card */}
+
                     <div className="min-h-[240px] rounded-md border border-gray-300 bg-white p-6 shadow-sm">
                         <div className="flex items-center justify-between">
-                            <h2 className="text-lg font-semibold">Total Customers</h2>
-                            <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500">
-                                <Users size={26} />
+                            <h2 className="text-lg font-semibold">Store Sessions</h2>
+                            <img
+                                src={documentTextIcon}
+                                alt="Analytics Icon"
+                                className="w-4"
+                            />
+                        </div>
+
+                        <p className="mt-2 text-3xl font-bold">0 -</p>
+
+                        {/* main box and body */}
+
+                        <div className="">
+                            <div className="mt-3 w-full overflow-x-auto pb-4">
+                                <table className="w-full overflow-x-auto">
+                                    <thead className="bg-subtleGray w-full">
+                                        <tr className="bg-unusualGray w-full">
+                                            {dummyData.headers.map((item) => (
+                                                <td
+                                                    className="text-xs font-semibold text-[#11192a]"
+                                                    key={item.id}
+                                                >
+                                                    {item.text}
+                                                </td>
+                                            ))}
+                                        </tr>
+                                    </thead>
+
+                                    <tbody className=" ">
+                                        {dummyData.rows.map((cell, idx) => {
+                                            return (
+                                                <tr
+                                                    key={idx}
+                                                    className="w-full items-start justify-start"
+                                                >
+                                                    <td className="mt-2 h-4 items-center gap-2 border-t-[1px] py-2 text-xs font-medium text-[#344054]">
+                                                        <div className="flex gap-2">
+                                                            {" "}
+                                                            {cell.name === "Facebook" ? (
+                                                                <img
+                                                                    src={faceBookIcon}
+                                                                    alt="facebook"
+                                                                    className="w-4"
+                                                                />
+                                                            ) : cell.name === "Instagram" ? (
+                                                                <img
+                                                                    src={instagramIcon}
+                                                                    alt="instagram"
+                                                                    className="w-4"
+                                                                />
+                                                            ) : cell.name === "Twitter" ? (
+                                                                <img
+                                                                    src={twitterIcon}
+                                                                    alt="twitter"
+                                                                    className="w-4"
+                                                                />
+                                                            ) : (
+                                                                <img
+                                                                    src={googleIcon}
+                                                                    alt="google"
+                                                                    className="w-4"
+                                                                />
+                                                            )}
+                                                            {cell.name}
+                                                        </div>
+                                                    </td>
+                                                    <td className="mt-2 items-center border-t-[1px] py-2 text-xs font-medium text-[#344054]">
+                                                        {cell.imp}
+                                                    </td>
+                                                    <td className="mt-2 border-t-[1px] py-2 text-xs font-medium text-[#344054]">{cell.clicks}</td>
+                                                    <td className="mt-2 border-t-[1px] py-1.5 text-xs font-medium text-[#344054]">{cell.revenue}</td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        <p className="mt-2 text-3xl font-bold text-gray-900">15,400k</p>
-                        <span className="mt-2 flex w-fit items-center gap-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500">
-                            <TrendingUp size={18} />
-                            15%
-                        </span>
+                        {/* main body stops here */}
                     </div>
 
-                    {/* Third Card */}
+                    {/* third */}
+
                     <div className="min-h-[240px] rounded-md border border-gray-300 bg-white p-6 shadow-sm">
                         <div className="flex items-center justify-between">
-                            <h2 className="text-lg font-semibold">Sales</h2>
-                            <div className="rounded-lg bg-blue-500/20 p-2 text-blue-500">
-                                <CreditCard size={26} />
+                            <h2 className="text-lg font-semibold">Store Sessions</h2>
+                            <img
+                                src={documentTextIcon}
+                                alt="Analytics Icon"
+                                className="w-4"
+                            />
+                        </div>
+
+                        <p className="mt-2 text-3xl font-bold">0 -</p>
+
+                        {/* main box and body */}
+
+                        <div className="">
+                            <div className="mt-3 w-full overflow-x-auto pb-4">
+                                <table className="w-full overflow-x-auto">
+                                    <thead className="bg-subtleGray w-full">
+                                        <tr className="bg-unusualGray w-full">
+                                            {dummyData.headers.map((item) => (
+                                                <td
+                                                    className="text-xs font-semibold text-[#11192a]"
+                                                    key={item.id}
+                                                >
+                                                    {item.text}
+                                                </td>
+                                            ))}
+                                        </tr>
+                                    </thead>
+
+                                    <tbody className=" ">
+                                        {dummyData.rows.map((cell, idx) => {
+                                            return (
+                                                <tr
+                                                    key={idx}
+                                                    className="w-full items-start justify-start"
+                                                >
+                                                    <td className="mt-2 h-4 items-center gap-2 border-t-[1px] py-2 text-xs font-medium text-[#344054]">
+                                                        <div className="flex gap-2">
+                                                            {" "}
+                                                            {cell.name === "Facebook" ? (
+                                                                <img
+                                                                    src={faceBookIcon}
+                                                                    alt="facebook"
+                                                                    className="w-4"
+                                                                />
+                                                            ) : cell.name === "Instagram" ? (
+                                                                <img
+                                                                    src={instagramIcon}
+                                                                    alt="instagram"
+                                                                    className="w-4"
+                                                                />
+                                                            ) : cell.name === "Twitter" ? (
+                                                                <img
+                                                                    src={twitterIcon}
+                                                                    alt="twitter"
+                                                                    className="w-4"
+                                                                />
+                                                            ) : (
+                                                                <img
+                                                                    src={googleIcon}
+                                                                    alt="google"
+                                                                    className="w-4"
+                                                                />
+                                                            )}
+                                                            {cell.name}
+                                                        </div>
+                                                    </td>
+                                                    <td className="mt-2 items-center border-t-[1px] py-2 text-xs font-medium text-[#344054]">
+                                                        {cell.imp}
+                                                    </td>
+                                                    <td className="mt-2 border-t-[1px] py-2 text-xs font-medium text-[#344054]">{cell.clicks}</td>
+                                                    <td className="mt-2 border-t-[1px] py-1.5 text-xs font-medium text-[#344054]">{cell.revenue}</td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
 
-                        <p className="mt-2 text-3xl font-bold text-gray-900">12,340</p>
-                        <span className="mt-2 flex w-fit items-center gap-2 rounded-full border border-blue-500 px-2 py-1 font-medium text-blue-500">
-                            <TrendingUp size={18} />
-                            19%
-                        </span>
+                        {/* main body stops here */}
                     </div>
+                    {/* */}
+
+                    {/* <div className="mt-3 w-full overflow-x-auto pb-4">
+                        <table className="w-full overflow-x-auto">
+                            <thead className="bg-subtleGray w-full p-6">
+                                <tr className="bg-unusualGray w-full px-6">
+                                    <td class="p-4 text-xs font-semibold text-[#11192a]">Item </td>
+                                    <td class="p-4 text-xs font-semibold text-[#11192a]">Description </td>
+                                    <td class="p-4 text-xs font-semibold text-[#11192a]">Unit Price</td>
+                                    <td class="p-4 text-xs font-semibold text-[#11192a]">Quantity</td>
+                                    <td class="p-4 text-xs font-semibold text-[#11192a]">
+                                        Amount
+                                        <div> (before tax)</div>
+                                    </td>
+                                    <td class="p-4 text-xs font-semibold text-[#11192a]">Tax Rate</td>
+                                    <td class="p-4 text-xs font-semibold text-[#11192a]">Tax Amount</td>
+                                    <td class="p-4 text-xs font-semibold text-[#11192a]">Total Price</td>
+                                </tr>
+                            </thead>
+
+                            <tbody className=" ">
+                                {dummyData.map((cell, idx) => {
+                                    return (
+                                        <tr
+                                            key={idx}
+                                            className="w-full"
+                                        >
+                                            <td className="mt-2 p-4 text-xs font-semibold text-[#11192a]">{cell.item}</td>
+                                            <td className="mt-2 p-4 text-xs font-semibold text-[#11192a]">{cell.description}</td>
+                                            <td className="mt-2 p-4 text-xs font-semibold text-[#11192a]">{cell.unitPrice}</td>
+                                            <td className="mt-2 text-center text-xs font-semibold text-[#11192a]">{cell.Quantity}</td>
+                                            <td className="mt-2 p-4 text-xs font-semibold text-[#11192a]">{cell.amount}</td>
+                                            <td className="mt-2 p-4 text-xs font-semibold text-[#11192a]">{cell.taxRate}</td>
+                                            <td className="mt-2 p-4 text-xs font-semibold text-[#11192a]">{cell.taxAmount}</td>
+                                            <td className="mt-2 p-4 text-xs font-semibold text-[#11192a]">{cell.totalPrice}</td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div> */}
                 </div>
             </div>
 
