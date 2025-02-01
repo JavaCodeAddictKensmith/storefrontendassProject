@@ -103,13 +103,13 @@ const RecordHistory = ({ data }) => {
                                 <tr className="bg-unusualGray w-full">
                                     {/* {data?.headers?.map((item) => ( */}
                                     <td className="py-3 pl-3 text-xs font-semibold text-[#11192a]">{"Name"}</td>
-                                    <td className="pl-3 text-xs font-semibold text-[#11192a]">{"Category"}</td>
+                                    <td className=" text-xs font-semibold text-[#11192a]">{"Category"}</td>
                                     <td className="pl-3 text-xs font-semibold text-[#11192a]">{"Last View"}</td>
                                     {/* // ))} */}
                                 </tr>
                             </thead>
 
-                            <tbody className="px-3">
+                            <tbody className="">
                                 {data?.map((cell, idx) => {
                                     return (
                                         <>
@@ -117,15 +117,17 @@ const RecordHistory = ({ data }) => {
                                                 key={idx}
                                                 className="w-full items-start justify-start"
                                             >
-                                                <td className="mt-2 h-4 items-center gap-2 border-t-[1px] py-2 pl-3 text-xs font-medium text-[#344054]">
+                                                <td className="mt-2 h-4 items-center gap-2 border-t-[1px] py-2 pl-3 text-[12px] font-medium text-[#344054]">
                                                     <div className="flex"> {cell.name}</div>
                                                 </td>
-                                                <td className="mt-2 h-4 items-center border-t-[1px] py-2 pl-3 text-xs font-medium text-[#344054]">
+                                                <td className="mt-2 h-4 items-center border-t-[1px] py-2 pr-5 text-xs font-medium text-[#344054]">
                                                     {/* <div className="flex items-center"> */}{" "}
-                                                    <button className="rounded-lg bg-[#EBEDEF] py-1">{cell.category}</button>
+                                                    <button className="rounded-lg bg-[#EBEDEF] px-2 py-1 text-[12px]">{cell.category}</button>
                                                     {/* </div> */}
                                                 </td>
-                                                <td className="mt-2 border-t-[1px] py-2 pl-3 text-xs font-medium text-[#344054]">{cell.lastView}</td>
+                                                <td className="mt-2 border-t-[1px] py-2 pl-3 text-[12px] font-medium text-[#344054]">
+                                                    {cell.lastView}
+                                                </td>
                                             </tr>
                                         </>
                                     );
