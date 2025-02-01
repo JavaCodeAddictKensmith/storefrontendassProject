@@ -11,9 +11,12 @@ import { cn } from "@/utils/cn";
 
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../appstate/slices/authSlice";
+import { useDispatch } from "react-redux";
 
 export const Sidebar = forwardRef(({ collapsed }, ref) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     return (
         <aside
             ref={ref}
@@ -54,10 +57,7 @@ export const Sidebar = forwardRef(({ collapsed }, ref) => {
 
                 <div
                     onClick={() => {
-                        localStorage.removeItem("user");
-
-                        navigate("/login");
-                        localStorage.removeItem("user");
+                        dispatch(logout());
                     }}
                     className="mt-4 flex w-full"
                 >

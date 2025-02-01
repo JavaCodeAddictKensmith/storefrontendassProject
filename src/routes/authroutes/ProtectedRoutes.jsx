@@ -1,12 +1,24 @@
-import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import { AuthContext } from "@/contexts/auth-context";
 
 const ProtectedRoute = ({ children }) => {
     // const auth = useContext(AuthContext);
-    const [user, setUser] = [localStorage.getItem("user")];
+    // const [user, setUser] = [localStorage.getItem("user")];
+    // if (!user) {
+    //     return (
+    //         <Navigate
+    //             to="/login"
+    //             replace
+    //         />
+    //     );
+    // }
+    // return children;
+    const { isAuthenticated } = useSelector((state) => state.auth);
 
-    if (!user) {
+    // return isAuthenticated ? children : <Navigate to="/login" />;
+
+    if (!isAuthenticated) {
         return (
             <Navigate
                 to="/login"
@@ -14,7 +26,6 @@ const ProtectedRoute = ({ children }) => {
             />
         );
     }
-
     return children;
 };
 

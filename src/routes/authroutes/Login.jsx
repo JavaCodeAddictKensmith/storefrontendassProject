@@ -6,18 +6,39 @@ import Contact from "../../layouts/components/ContactInput";
 import { Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
 
+import { useDispatch, useSelector } from "react-redux";
+
+import { login } from "../../appstate/slices/authSlice";
+
 const Login = () => {
     // const { login } = useAuth();
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    // const navigate = useNavigate();
+    // const [user, setUser] = [localStorage.getItem("user")];
+
+    // const handleLogin = () => {
+    //     // login(email, password);
+
+    //     if (user) {
+    //         navigate("/");
+    //     }
+    // };
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [user, setUser] = [localStorage.getItem("user")];
+    const { isAuthenticated } = useSelector((state) => state.auth);
 
-    const handleLogin = () => {
-        // login(email, password);
+    const handleLogin = (e) => {
+        e.preventDefault();
 
-        if (user) {
+        dispatch(login({ email, password }));
+
+        if (isAuthenticated) {
             navigate("/");
+            // console.log("User logged in:", localStorage.getItem("user"));
         }
     };
 
@@ -38,7 +59,10 @@ const Login = () => {
                         <span className="px-3 text-sm font-medium text-[#777F8C]">Or</span>
                         <div className="h-[1px] w-full bg-[#C0C4CA]"></div>
                     </div>
-                    <form className="space-y-4">
+                    <form
+                        className="space-y-4"
+                        onSubmit={handleLogin}
+                    >
                         <div>
                             <label className="mb-1 block text-[15px] text-[#252D3C]">Name</label>
                             {/* <input
@@ -62,6 +86,8 @@ const Login = () => {
                                 className={"h-[48px] w-full rounded-md border-[0.6px] border-gray-300 bg-[#F9F9FA] px-3 py-5 focus:outline-none"}
                                 placeholder={"Email"}
                                 type="email"
+                                // value={email}
+                                // onChange={(e) => setEmail(e.target.value)}
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
@@ -96,6 +122,8 @@ const Login = () => {
                                             placeholder=""
                                             value={password}
                                             onChange={(e) => setPassword(e.target.value)}
+                                            // value={password}
+                                            // onChange={(e) => setPassword(e.target.value)}
                                             // onChange={onChange}
                                             // onBlur={onBlur}
                                             // value={value}
@@ -121,7 +149,8 @@ const Login = () => {
                         </div>
                         <button
                             className="item-center flex w-full justify-center rounded-md bg-[#9A1725] py-[18px] text-center text-white transition"
-                            onClick={handleLogin}
+                            // onClick={handleLogin}
+                            type="submit"
                         >
                             Sign In
                         </button>

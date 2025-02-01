@@ -3,27 +3,31 @@ import { Link, useNavigate } from "react-router-dom";
 import InputField from "../../layouts/components/InputField";
 import Contact from "../../layouts/components/ContactInput";
 import { Eye, EyeOff } from "lucide-react";
+import { useDispatch } from "react-redux";
 
+import { signup } from "../../appstate/slices/authSlice";
 const SignupPage = () => {
     const [username, setUsername] = useState("");
-    const navigate = useNavigate();
-
-    const handleSignup = () => {
-        if (username.trim()) {
-            localStorage.setItem("user", username);
-            navigate("/login");
-        }
-    };
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    // const handleSignup = () => {
+    //     if (username.trim()) {
+    //         localStorage.setItem("user", username);
+    //         navigate("/login");
+    //     }
+    // };
 
-    const [user, setUser] = [localStorage.getItem("user")];
+    const handleSignup = (e) => {
+        e.preventDefault();
 
-    const handleLogin = () => {
-        // login(email, password);
-
-        if (user) {
-            navigate("/");
+        if (username && email && password) {
+            dispatch(signup({ username, email, password }));
+            alert("Signup successful! Please log in.");
+            navigate("/login");
+        } else {
+            console.error("Please fill all fields.");
         }
     };
 
@@ -44,7 +48,10 @@ const SignupPage = () => {
                         <span className="px-3 text-sm font-medium text-[#777F8C]">Or</span>
                         <div className="h-[1px] w-full bg-[#C0C4CA]"></div>
                     </div>
-                    <form className="space-y-4">
+                    <form
+                        className="space-y-4"
+                        onSubmit={handleSignup}
+                    >
                         <div>
                             <label className="mb-1 block text-[15px] text-[#252D3C]">Name</label>
                             {/* <input
@@ -129,7 +136,8 @@ const SignupPage = () => {
                         </div>
                         <button
                             className="item-center flex w-full justify-center rounded-md bg-[#9A1725] py-[18px] text-center text-white transition"
-                            onClick={handleSignup}
+                            // onClick={handleSignup}
+                            type="submit"
                         >
                             Sign Up
                         </button>
