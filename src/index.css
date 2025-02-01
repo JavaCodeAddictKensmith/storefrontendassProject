@@ -1,10 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
     body {
-        @apply [scrollbar-color:_#cbd5e1_transparent] dark:[scrollbar-color:_#334155_transparent];
+        /* @apply [scrollbar-color:_#cbd5e1_transparent]; */
+        @apply font-poppins;
     }
 }
 
@@ -14,7 +19,7 @@
     }
 
     .sidebar-group-title {
-        @apply overflow-hidden text-ellipsis text-sm font-medium text-slate-600 dark:text-slate-400 px-3;
+        @apply overflow-hidden text-ellipsis px-3 text-sm font-medium text-slate-600 dark:text-slate-400;
     }
 
     .sidebar-item {

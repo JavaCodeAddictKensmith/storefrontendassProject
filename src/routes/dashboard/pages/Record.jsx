@@ -4,9 +4,6 @@ import { useTheme } from "@/hooks/use-theme";
 
 import { Footer } from "@/layouts/footer";
 
-import documentTextIcon from "@/assets/svgs/document-text.svg";
-import globalIcon from "@/assets/svgs/global.svg";
-
 import tickSqaureIcon from "@/assets/svgs/tick-square.svg";
 import calenderIcon from "@/assets/svgs/calendar-2.svg";
 import arrow3Icon from "@/assets/svgs/arrow-3.svg";
@@ -88,7 +85,7 @@ const RecordHistory = ({ data }) => {
                     <div className="flex items-center justify-between gap-3">
                         <div className="flex flex-col gap-y-2 p-2 transition-colors">
                             <div className="flex gap-2">
-                                <div className="flex items-center justify-center text-center text-[12px] text-[#252D3C]">12 results</div>
+                                <div className="flex items-center justify-center text-center text-[12px] text-[#252D3C]">{data.length} results</div>
                             </div>
                         </div>
                     </div>
