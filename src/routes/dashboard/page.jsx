@@ -45,7 +45,7 @@ const DashboardPage = () => {
             { id: "3", name: "Store conversion over time", category: "Acquisition", lastView: "" },
             { id: "4", name: "Cart Analysis", category: "Acquisition", lastView: "" },
             { id: "5", name: "Store sessions", category: "Acquisition", lastView: "" },
-            { id: "6", name: "Store sessions", category: "Acquisition", lastView: "" },
+            { id: "6", name: "Store sessions", category: "Acquisition", lastView: " " },
             { id: "7", name: "Store sessions", category: "Acquisition", lastView: "" },
             { id: "8", name: "Store sessions", category: "Acquisition", lastView: "" },
 
