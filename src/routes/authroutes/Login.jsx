@@ -10,6 +10,12 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { login } from "../../appstate/slices/authSlice";
 
+import { useFormik } from "formik";
+
+import { signup } from "../../appstate/slices/authSlice";
+import toast from "react-hot-toast";
+import { signUpValidationSchema } from "../../validation/SignUpValidation";
+
 const Login = () => {
     // const { login } = useAuth();
     // const [email, setEmail] = useState("");
@@ -31,17 +37,6 @@ const Login = () => {
     const navigate = useNavigate();
     const { isAuthenticated } = useSelector((state) => state.auth);
 
-    const handleLogin = (e) => {
-        e.preventDefault();
-
-        dispatch(login({ email, password }));
-
-        // if (isAuthenticated) {
-        //     navigate("/");
-        //     // console.log("User logged in:", localStorage.getItem("user"));
-        // }
-    };
-
     // Redirect to home page when authentication state updates
     useEffect(() => {
         if (isAuthenticated) {
@@ -49,8 +44,45 @@ const Login = () => {
         }
     }, [isAuthenticated, navigate]);
 
+    const [selectedCountryCode, setSelectedCountryCode] = useState("+234");
+
     const defaultClass = "h-[41px]  border-1 border-textColor text-xs font-normal";
     const [togglepassword, setTogglePassword] = useState("password");
+
+    const handlePhoneCountryChange = (selectedCountryCode) => {
+        setSelectedCountryCode(selectedCountryCode); // Update selected country code in state
+    };
+
+    const formik = useFormik({
+        initialValues: {
+            username: "",
+            email: "",
+            phoneNumber: "",
+            password: "",
+        },
+        validationSchema: signUpValidationSchema(selectedCountryCode),
+        onSubmit: (values) => {
+            const phoneNumberWithCountryCode = `${selectedCountryCode}${values.phoneNumber}`;
+
+            const handleLogin = () => {
+                dispatch(
+                    login({
+                        username: values.username,
+                        email: values.email,
+                        phoneNumber: phoneNumberWithCountryCode,
+                        password: values.password,
+                    }),
+                );
+
+                // if (isAuthenticated) {
+                //     navigate("/");
+                //     // console.log("User logged in:", localStorage.getItem("user"));
+                // }
+            };
+
+            handleLogin();
+        },
+    });
 
     return (
         <>
@@ -68,7 +100,7 @@ const Login = () => {
                     </div>
                     <form
                         className="space-y-4"
-                        onSubmit={handleLogin}
+                        onSubmit={formik.handleSubmit}
                     >
                         <div>
                             <label className="mb-1 block text-[15px] text-[#252D3C]">Name</label>
@@ -80,7 +112,17 @@ const Login = () => {
                             <InputField
                                 className={"h-[48px] w-full rounded-md border-[0.6px] border-gray-300 bg-[#F9F9FA] px-3 py-5 focus:outline-none"}
                                 placeholder={"Name"}
+                                // value={username}
+                                // onChange={(e) => setUsername(e.target.value)}
+                                id="username"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.username}
                             />
+
+                            {formik.touched.username && formik.errors.username ? (
+                                <p className="mt-[8px] w-[300px] text-xs text-red-600 md:w-[424px]">{formik.errors.username}</p>
+                            ) : null}
                         </div>
                         <div>
                             <label className="mb-1 block text-[15px] text-[#252D3C]">Email</label>
@@ -95,18 +137,36 @@ const Login = () => {
                                 type="email"
                                 // value={email}
                                 // onChange={(e) => setEmail(e.target.value)}
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                id="email"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.email}
                             />
+
+                            {formik.touched.email && formik.errors.email ? (
+                                <p className="mt-[8px] w-[300px] text-xs text-red-600 md:w-[424px]">{formik.errors.email}</p>
+                            ) : null}
                         </div>
                         <div>
                             <label className="mb-1 block text-sm text-[#252D3C]">Phone Number</label>
-                            <Contact />
+                            <Contact
+                                name="phoneNumber"
+                                // title={"Contact Number"}
+                                id="phoneNumber"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.phoneNumber}
+                                onCountryCodeChange={handlePhoneCountryChange}
+                            />
+
+                            {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+                                <p className="mt-[8px] w-[300px] text-xs text-red-600 md:w-[424px]">{formik.errors.phoneNumber}</p>
+                            ) : null}
                         </div>
                         <div>
                             <div className="flex w-full justify-between">
                                 <label className="mb-1 block text-sm text-[#252D3C]">Password</label>
-                                <label className="mb-1 block text-[14px] text-[#9A1725]">Forgot Password</label>
+                                {/* <label className="mb-1 block text-[14px] text-[#9A1725]">Forgot Password</label> */}
                             </div>
 
                             <div>
@@ -122,20 +182,22 @@ const Login = () => {
                                         <input
                                             // defaultValue={defaultValue}
                                             // disabled={disabled}
+                                            id="password"
                                             type={togglepassword}
-                                            // name={name}
                                             // id={id}
                                             className={`${defaultClass} flex-1 bg-[#F9F9FA] focus:outline-none`}
-                                            placeholder=""
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
+                                            placeholder="password "
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.password}
+                                            // autoComplete="new-password"
                                             // value={password}
                                             // onChange={(e) => setPassword(e.target.value)}
-                                            // onChange={onChange}
                                             // onBlur={onBlur}
                                             // value={value}
                                             // maxLength={maxLength}
                                         />
+
                                         <div className="mr-1 flex h-full w-fit cursor-pointer items-center bg-transparent py-2 text-xs text-gray-500 outline-none">
                                             {togglepassword === "password" ? (
                                                 <Eye
@@ -150,14 +212,20 @@ const Login = () => {
                                             )}
                                         </div>
                                     </div>
+
+                                    {formik.touched.password && formik.errors.password ? (
+                                        <div className="mb-5 mt-[8px] flex w-[300px] text-xs text-red-600 md:w-[424px]">{formik.errors.password}</div>
+                                    ) : null}
                                 </div>
                             </div>
                             {/* <label className="mb-1 block text-sm text-gray-600">Password</label> */}
                         </div>
+
                         <button
-                            className="item-center flex w-full justify-center rounded-md bg-[#9A1725] py-[18px] text-center text-white transition"
+                            className={`item-center mt-5 flex w-full justify-center rounded-md bg-[#9A1725] py-[18px] text-center text-white transition ${formik.isValid ? "cursor-pointer" : "cursor-not-allowed"}`}
                             // onClick={handleLogin}
                             type="submit"
+                            disabled={!formik.isValid}
                         >
                             Sign In
                         </button>

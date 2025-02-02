@@ -24,9 +24,9 @@ const passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*()])(?=.*[A-Z]).{6,}$/;
 
 const signUpValidationSchema = (countryCode) =>
     Yup.object({
+        username: Yup.string().required("This field is required"),
         email: Yup.string().email("Invalid email").required("Email is required"),
         phoneNumber: numberLength(countryCode, 10, 15).required("Mobile number is required."),
-        fullName: Yup.string().required("This field is required"),
         password: Yup.string()
             .min(6, "Password must be at least 6-8 characters")
             .matches(
@@ -34,9 +34,6 @@ const signUpValidationSchema = (countryCode) =>
                 "Password must contain at least one number, one special character, one uppercase letter, and be 6-8 characters long.",
             )
             .required("Password is required"),
-        confirmPassword: Yup.string()
-            .oneOf([Yup.ref("password"), null], "Passwords must match")
-            .required("Passwords do not match"),
     });
 
 export { signUpValidationSchema, passwordRegex };

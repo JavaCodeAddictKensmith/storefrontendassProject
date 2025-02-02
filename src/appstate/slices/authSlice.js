@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 const storedUser = JSON.parse(localStorage.getItem("user")) || null;
 const initialState = {
     user: storedUser,
-    isAuthenticated: !!storedUser, // True if user exists in localStorage
+    isAuthenticated: false, // True if user exists in localStorage
 };
 
 const authSlice = createSlice({
@@ -13,17 +13,22 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         signup: (state, action) => {
-            const { username, email, password } = action.payload;
-            const newUser = { username, email, password };
+            const { username, email, phoneNumber, password } = action.payload;
+            const newUser = { username, email, phoneNumber, password };
 
             localStorage.setItem("user", JSON.stringify(newUser)); // Save user to localStorage
             state.user = newUser;
             state.isAuthenticated = false;
         },
         login: (state, action) => {
-            const { email, password } = action.payload;
+            const { username, email, phoneNumber, password } = action.payload;
             const storedUser = JSON.parse(localStorage.getItem("user"));
-            var iscorrectUser = storedUser && storedUser.email === email && storedUser.password === password;
+            var iscorrectUser =
+                storedUser &&
+                storedUser.username === username &&
+                storedUser.email === email &&
+                storedUser.phoneNumber === phoneNumber &&
+                storedUser.password === password;
             // console.log("iscorrect user:", iscorrectUser);
 
             if (iscorrectUser) {

@@ -1,40 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import InputField from "../../layouts/components/InputField";
 import Contact from "../../layouts/components/ContactInput";
 import { Eye, EyeOff } from "lucide-react";
 import { useDispatch } from "react-redux";
+import { useFormik } from "formik";
 
 import { signup } from "../../appstate/slices/authSlice";
 import toast from "react-hot-toast";
+import { signUpValidationSchema } from "../../validation/SignUpValidation";
 const SignupPage = () => {
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const handleSignup = () => {
-    //     if (username.trim()) {
-    //         localStorage.setItem("user", username);
-    //         navigate("/login");
-    //     }
-    // };
-
-    const handleSignup = (e) => {
-        e.preventDefault();
-
-        if (username && email && password) {
-            dispatch(signup({ username, email, password }));
-            // alert("Signup successful! Please log in.");
-            toast.success("Signup successful! Please log in.");
-            navigate("/login");
-        } else {
-            toast.error("Please fill all fields.");
-        }
-    };
+    const [selectedCountryCode, setSelectedCountryCode] = useState("+234");
 
     const defaultClass = "h-[41px]  border-1 border-textColor text-xs font-normal";
     const [togglepassword, setTogglePassword] = useState("password");
+
+    const handlePhoneCountryChange = (selectedCountryCode) => {
+        setSelectedCountryCode(selectedCountryCode); // Update selected country code in state
+    };
+
+    const formik = useFormik({
+        initialValues: {
+            username: "",
+            email: "",
+            phoneNumber: "",
+            password: "",
+        },
+        validationSchema: signUpValidationSchema(selectedCountryCode),
+        onSubmit: (values) => {
+            const phoneNumberWithCountryCode = `${selectedCountryCode}${values.phoneNumber}`;
+
+            const handleSignup = () => {
+                // e.preventDefault();
+
+                if (formik.isValid) {
+                    dispatch(
+                        signup({
+                            username: values.username,
+                            email: values.email,
+                            phoneNumber: phoneNumberWithCountryCode,
+                            password: values.password,
+                        }),
+                    );
+                    // alert("Signup successful! Please log in.");
+                    toast.success("Signup successful! Please log in.");
+                    // console.log("successfull");
+                    navigate("/login");
+                } else {
+                    toast.error("Please fill all fields.");
+                }
+            };
+            handleSignup();
+        },
+    });
+
+    // To control disabled button
 
     return (
         <>
@@ -52,7 +74,7 @@ const SignupPage = () => {
                     </div>
                     <form
                         className="space-y-4"
-                        onSubmit={handleSignup}
+                        onSubmit={formik.handleSubmit}
                     >
                         <div>
                             <label className="mb-1 block text-[15px] text-[#252D3C]">Name</label>
@@ -64,9 +86,17 @@ const SignupPage = () => {
                             <InputField
                                 className={"h-[48px] w-full rounded-md border-[0.6px] border-gray-300 bg-[#F9F9FA] px-3 py-5 focus:outline-none"}
                                 placeholder={"Name"}
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
+                                // value={username}
+                                // onChange={(e) => setUsername(e.target.value)}
+                                id="username"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.username}
                             />
+
+                            {formik.touched.username && formik.errors.username ? (
+                                <p className="mt-[8px] w-[300px] text-xs text-red-600 md:w-[424px]">{formik.errors.username}</p>
+                            ) : null}
                         </div>
                         <div>
                             <label className="mb-1 block text-[15px] text-[#252D3C]">Email</label>
@@ -79,13 +109,33 @@ const SignupPage = () => {
                                 className={"h-[48px] w-full rounded-md border-[0.6px] border-gray-300 bg-[#F9F9FA] px-3 py-5 focus:outline-none"}
                                 placeholder={"Email"}
                                 type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                // value={email}
+                                // onChange={(e) => setEmail(e.target.value)}
+                                id="email"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.email}
                             />
+
+                            {formik.touched.email && formik.errors.email ? (
+                                <p className="mt-[8px] w-[300px] text-xs text-red-600 md:w-[424px]">{formik.errors.email}</p>
+                            ) : null}
                         </div>
                         <div>
                             <label className="mb-1 block text-sm text-[#252D3C]">Phone Number</label>
-                            <Contact />
+                            <Contact
+                                name="phoneNumber"
+                                // title={"Contact Number"}
+                                id="phoneNumber"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.phoneNumber}
+                                onCountryCodeChange={handlePhoneCountryChange}
+                            />
+
+                            {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
+                                <p className="mt-[8px] w-[300px] text-xs text-red-600 md:w-[424px]">{formik.errors.phoneNumber}</p>
+                            ) : null}
                         </div>
                         <div>
                             <div className="flex w-full justify-between">
@@ -106,18 +156,22 @@ const SignupPage = () => {
                                         <input
                                             // defaultValue={defaultValue}
                                             // disabled={disabled}
+                                            id="password"
                                             type={togglepassword}
-                                            name={name}
                                             // id={id}
                                             className={`${defaultClass} flex-1 bg-[#F9F9FA] focus:outline-none`}
                                             placeholder="password "
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            // onChange={onChange}
+                                            onChange={formik.handleChange}
+                                            onBlur={formik.handleBlur}
+                                            value={formik.values.password}
+                                            // autoComplete="new-password"
+                                            // value={password}
+                                            // onChange={(e) => setPassword(e.target.value)}
                                             // onBlur={onBlur}
                                             // value={value}
                                             // maxLength={maxLength}
                                         />
+
                                         <div className="mr-1 flex h-full w-fit cursor-pointer items-center bg-transparent py-2 text-xs text-gray-500 outline-none">
                                             {togglepassword === "password" ? (
                                                 <Eye
@@ -132,17 +186,26 @@ const SignupPage = () => {
                                             )}
                                         </div>
                                     </div>
+
+                                    {formik.touched.password && formik.errors.password ? (
+                                        <div className="mb-5 mt-[8px] flex w-[300px] text-xs text-red-600 md:w-[424px]">{formik.errors.password}</div>
+                                    ) : null}
                                 </div>
                             </div>
                             {/* <label className="mb-1 block text-sm text-gray-600">Password</label> */}
                         </div>
-                        <button
-                            className="item-center flex w-full justify-center rounded-md bg-[#9A1725] py-[18px] text-center text-white transition"
-                            // onClick={handleSignup}
-                            type="submit"
-                        >
-                            Sign Up
-                        </button>
+
+                        <div>
+                            <button
+                                className={`item-center mt-5 flex w-full justify-center rounded-md bg-[#9A1725] py-[18px] text-center text-white transition ${formik.isValid ? "cursor-pointer" : "cursor-not-allowed"}`}
+                                // onClick={handleSignup}
+                                disabled={!formik.isValid}
+                                type="submit"
+                            >
+                                Sign Up
+                            </button>
+                        </div>
+
                         <div className="text-gray-60 font-poppins items-center justify-start text-[14px] font-semibold text-[#344054]">
                             Already have an account?{" "}
                             <Link
