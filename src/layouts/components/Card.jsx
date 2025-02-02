@@ -24,7 +24,7 @@ import MiksaFruzsinaPerson from "@/assets/svgs/MiksaFruzsinaPerson.svg";
 
 // MiksaFruzsinaPerson
 
-const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, description }) => {
+const Card = ({ id, title, topAmount, data, setActiveTab, description, commerceSection }) => {
     //fIRST tyPE
     const CardWithAnyIconBody = () => (
         <div
@@ -53,7 +53,7 @@ const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, descri
                                     {title === "Top Selling Products" ? (
                                         <tr
                                             key={idx}
-                                            className="w-full items-start justify-start"
+                                            className="w-full items-start justify-start py-3"
                                         >
                                             <td className="mt-2 h-4 items-center gap-2 border-t-[1px] py-2 text-xs font-medium text-[#344054]">
                                                 <div className="flex gap-2">
@@ -62,25 +62,25 @@ const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, descri
                                                         <img
                                                             src={freshLemon}
                                                             alt="lemmon"
-                                                            className="w-4"
+                                                            className="h-5 w-5"
                                                         />
                                                     ) : cell.name === "Barista Drink Latte Iit" ? (
                                                         <img
                                                             src={baristardrink}
                                                             alt="barista"
-                                                            className="w-4"
+                                                            className="h-5 w-5"
                                                         />
                                                     ) : cell.name === "Essential Waitrose D" ? (
                                                         <img
                                                             src={waterrose}
                                                             alt="waterrose"
-                                                            className="w-4"
+                                                            className="h-5 w-5"
                                                         />
                                                     ) : (
                                                         <img
                                                             src={freshfarmspag}
                                                             alt="freshfarmspag"
-                                                            className="w-4"
+                                                            className="h-5 w-5"
                                                         />
                                                     )}
                                                     {cell.name}
@@ -224,19 +224,32 @@ const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, descri
     );
 
     // second type
+
+    /*
+      commerceSection: {
+                values: { firstValue: "N10", secondValue: "N5", thirdValue: "N0" },
+                intervals: { first: "12:00AM", second: "5:00AM", third: "10:00AM", fourth: "3:00PM", fifth: "8:00PM" },
+                period: { startDate: "Aug 19, 2024", endDate: "Aug 18, 2024" },
+            },
+
+
+
+
+    */
+
     const CardWithLinesBody = () => (
         <div key={id}>
             {" "}
             <div className="mt-3 flex items-center gap-2">
-                <div>₦10</div>
+                <div>{commerceSection?.values?.firstValue}</div>
                 <div className="h-[2px] flex-1 bg-gray-300 line-through"></div>
             </div>
             <div className="mt-3 flex items-center gap-2">
-                <div>₦10</div>
+                <div>{commerceSection?.values?.secondValue}</div>
                 <div className="h-[2px] flex-1 bg-gray-300 line-through"></div>
             </div>
             <div className="mt-3 flex items-center gap-2">
-                <div>₦10</div>
+                <div>{commerceSection?.values?.thirdValue}</div>
                 {/* <div className="flex flex-1 items-center justify-between">
                                 <div className="w-full border-t-2 border-dashed border-red-700"></div>
                             </div> */}
@@ -270,12 +283,12 @@ const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, descri
             </div>
             <div className="mt-1 flex items-center gap-2">
                 {/* <div>N10</div> */}
-                <div className="t flex justify-between gap-4 pl-7 text-[12px] text-[#777F8C]">
-                    <span className="text-[12px]">12:00AM</span>
-                    <span className="text-[12px]">5:00AM </span>
-                    <span className="text-[12px]">10:00AM </span>
-                    <span className="text-[12px]">3:00PM</span>
-                    <span className="text-[12px]">8:00PM</span>
+                <div className="t flex flex-wrap justify-between gap-4 pl-7 text-[12px] text-[#777F8C]">
+                    <span className="text-[12px]">{commerceSection?.intervals?.first}</span>
+                    <span className="text-[12px]">{commerceSection?.intervals?.second} </span>
+                    <span className="text-[12px]">{commerceSection?.intervals?.third}</span>
+                    <span className="text-[12px]">{commerceSection?.intervals?.fourth}</span>
+                    <span className="text-[12px]">{commerceSection?.intervals?.fifth}</span>
                     {/* {"12:00AM  5:00AM  10:00AM  3:00PM 8:00PM "} */}
                 </div>
             </div>
@@ -287,7 +300,7 @@ const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, descri
                         <div className="h-[2px] w-4 bg-[#158C7F]"></div>
                     )}
 
-                    <span>Aug 19, 2024</span>
+                    <span>{commerceSection?.period?.startDate}</span>
                 </div>
                 <div className="flex items-center gap-1">
                     {title !== "Returning Customer Rate" ? (
@@ -295,7 +308,7 @@ const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, descri
                     ) : (
                         <div className="h-[2px] w-4 bg-[#FBBF24]"></div>
                     )}
-                    <span>Aug 18, 2024</span>
+                    <span>{commerceSection?.period?.endDate}</span>
                 </div>
             </div>
         </div>
@@ -527,7 +540,7 @@ const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, descri
         <div>
             {" "}
             <div
-                className="relative h-[280px] rounded-md border border-gray-300 bg-white p-6 shadow-sm"
+                className="relative h-[290px] rounded-md border border-gray-300 bg-white px-6 py-4 shadow-sm"
                 onMouseOver={() => setSwap(true)}
                 onMouseLeave={() => setSwap(false)}
             >
@@ -554,7 +567,7 @@ const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, descri
                         className="w-4"
                     />
                 </div>
-                <p className={`${title === "Top Selling Products" ? "hidden" : "mt-2 text-xl font-bold"} mt-2 text-3xl font-bold`}>{topAmount}-</p>
+                <p className={`${title === "Top Selling Products" ? "hidden" : "mt-2 text-xl font-bold"} mt-2 text-3xl font-bold`}>{topAmount} -</p>
                 {/* main box and body */}
                 {/* <CardWithAnyIconBody /> */}
                 <ReturnBodyTye />

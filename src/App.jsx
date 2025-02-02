@@ -25,6 +25,9 @@ function App() {
                 { path: "categories", element: <h1>Categories</h1> },
                 { path: "brands", element: <h1>Brands</h1> },
                 { path: "refunds", element: <h1>Refunds</h1> },
+                { path: "support", element: <h1>Supports coming soon</h1> },
+                { path: "configuration", element: <h1>Configuration coming soon</h1> },
+                // /support
             ],
         },
         { path: "/login", element: <Login /> },
