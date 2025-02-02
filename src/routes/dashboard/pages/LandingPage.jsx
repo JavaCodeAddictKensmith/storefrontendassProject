@@ -5,9 +5,15 @@ import arrow3Icon from "@/assets/svgs/arrow-3.svg";
 import Card from "../../../layouts/components/Card";
 
 import { NavLink, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+// import { fetchSalesOverview } from "../../../appstate/api/dashboard";
+// import { fetchAccounTransactions } from "../../../appstate/slices/transactionSlice";
+import { fetchAccountTransactions } from "../../../appstate/slices/transactionSlice";
 
 const LandingPage = ({ setActiveTab }) => {
     // const { theme } = useTheme();
+    const dispatch = useDispatch();
 
     const dummydum = [
         {
@@ -747,6 +753,19 @@ const LandingPage = ({ setActiveTab }) => {
         },
     ];
 
+    // Selecting state from Redux store
+    const { data: transactions, loading: transactionsLoading, error: transactionsError } = useSelector((state) => state.transactions.transactions);
+
+    // const { data: userAccounts, loading: userAccountsLoading, error: userAccountsError } = useSelector((state) => state.transactions.userAccounts);
+
+    useEffect(() => {
+        dispatch(fetchAccountTransactions());
+        // dispatch(fetchUserAccountDetails());
+    }, [dispatch]);
+    console.log("===Transas==", transactions);
+    if (transactionsLoading) return <p>Loading...</p>;
+    if (transactionsError) return <p>Error: {transactionsError}</p>;
+
     return (
         <div className="flex flex-col gap-y-4">
             {/* Next Section */}
@@ -832,7 +851,7 @@ const LandingPage = ({ setActiveTab }) => {
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                     {/* Second Card */}
 
-                    {dummydum.map((cell, idx) => (
+                    {transactions?.map((cell, idx) => (
                         <Card
                             id={cell.id}
                             key={cell.id}
