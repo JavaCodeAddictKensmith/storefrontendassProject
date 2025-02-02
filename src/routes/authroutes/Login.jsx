@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import { useAuth } from "@/contexts/auth-context";
 import { useNavigate } from "react-router-dom";
 import InputField from "../../layouts/components/InputField";
@@ -36,11 +36,18 @@ const Login = () => {
 
         dispatch(login({ email, password }));
 
+        // if (isAuthenticated) {
+        //     navigate("/");
+        //     // console.log("User logged in:", localStorage.getItem("user"));
+        // }
+    };
+
+    // Redirect to home page when authentication state updates
+    useEffect(() => {
         if (isAuthenticated) {
             navigate("/");
-            // console.log("User logged in:", localStorage.getItem("user"));
         }
-    };
+    }, [isAuthenticated, navigate]);
 
     const defaultClass = "h-[41px]  border-1 border-textColor text-xs font-normal";
     const [togglepassword, setTogglePassword] = useState("password");
@@ -116,7 +123,7 @@ const Login = () => {
                                             // defaultValue={defaultValue}
                                             // disabled={disabled}
                                             type={togglepassword}
-                                            name={name}
+                                            // name={name}
                                             // id={id}
                                             className={`${defaultClass} flex-1 bg-[#F9F9FA] focus:outline-none`}
                                             placeholder=""

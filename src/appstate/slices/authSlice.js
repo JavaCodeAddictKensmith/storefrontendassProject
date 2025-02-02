@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 // Get initial state from localStorage
 const storedUser = JSON.parse(localStorage.getItem("user")) || null;
 const initialState = {
     user: storedUser,
-    isAuthenticated: false, // True if user exists in localStorage
+    isAuthenticated: !!storedUser, // True if user exists in localStorage
 };
 
 const authSlice = createSlice({
@@ -22,13 +23,16 @@ const authSlice = createSlice({
         login: (state, action) => {
             const { email, password } = action.payload;
             const storedUser = JSON.parse(localStorage.getItem("user"));
+            var iscorrectUser = storedUser && storedUser.email === email && storedUser.password === password;
+            // console.log("iscorrect user:", iscorrectUser);
 
-            if (storedUser && storedUser.email === email && storedUser.password === password) {
+            if (iscorrectUser) {
                 state.isAuthenticated = true;
                 state.user = storedUser;
                 console.log("Logged in user:", storedUser);
+                toast.success("Logged in successfully!");
             } else {
-                console.error("Invalid email or password!");
+                toast.error("Invalid email or password!");
             }
         },
         logout: (state) => {

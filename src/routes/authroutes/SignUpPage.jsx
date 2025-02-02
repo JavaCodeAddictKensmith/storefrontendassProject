@@ -6,6 +6,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useDispatch } from "react-redux";
 
 import { signup } from "../../appstate/slices/authSlice";
+import toast from "react-hot-toast";
 const SignupPage = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -24,10 +25,11 @@ const SignupPage = () => {
 
         if (username && email && password) {
             dispatch(signup({ username, email, password }));
-            alert("Signup successful! Please log in.");
+            // alert("Signup successful! Please log in.");
+            toast.success("Signup successful! Please log in.");
             navigate("/login");
         } else {
-            console.error("Please fill all fields.");
+            toast.error("Please fill all fields.");
         }
     };
 
