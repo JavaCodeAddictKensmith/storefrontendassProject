@@ -37,6 +37,7 @@ const Layout = () => {
             <Header
                 collapsed={collapsed}
                 setCollapsed={setCollapsed}
+                isDesktop={isDesktopDevice}
             />
             <Sidebar
                 ref={sidebarRef}

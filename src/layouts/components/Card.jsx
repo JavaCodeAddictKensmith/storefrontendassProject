@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import documentTextIcon from "@/assets/svgs/document-text.svg";
 
 import globalIcon from "@/assets/svgs/global.svg";
@@ -21,9 +21,10 @@ import Usaflag from "@/assets/svgs/Usaflags.svg";
 import verasp from "@/assets/svgs/VeresPannaPerson.svg";
 import Takacsp from "@/assets/svgs/TakacsBiankaPerson.svg";
 import MiksaFruzsinaPerson from "@/assets/svgs/MiksaFruzsinaPerson.svg";
+
 // MiksaFruzsinaPerson
 
-const Card = ({ id, title, topAmount, data }) => {
+const Card = ({ id, title, topAmount, data, text, subtitle, setActiveTab, description }) => {
     //fIRST tyPE
     const CardWithAnyIconBody = () => (
         <div
@@ -519,10 +520,32 @@ const Card = ({ id, title, topAmount, data }) => {
     //         default:
     //           return null;
     // };
+
+    const [swap, setSwap] = useState(false);
+
     return (
         <div>
             {" "}
-            <div className="min-h-[240px] rounded-md border border-gray-300 bg-white p-6 shadow-sm">
+            <div
+                className="relative h-[280px] rounded-md border border-gray-300 bg-white p-6 shadow-sm"
+                onMouseOver={() => setSwap(true)}
+                onMouseLeave={() => setSwap(false)}
+            >
+                {swap && (
+                    <div
+                        onClick={() => setActiveTab("records-history")}
+                        className={`group-hover:duration-600 lg:w-[300px bg-gray-300/14 absolute left-4 top-3 flex-col flex-wrap gap-1 rounded-lg border-[0.2px] border-gray-300 bg-[#FAFAFA] px-3 py-2 shadow-lg duration-500 group-hover:-bottom-0 md:w-[300px]`}
+                    >
+                        <span className={`text-black ${swap ? "mb-0" : "mb-16"} text-base font-medium`}>{title}</span>
+                        {/* <span className="text-3xl font-bold text-gray-800">{title}</span> */}
+                        <div className="font-sm flex flex-wrap text-sm text-gray-700"> {description}</div>
+
+                        <div className="mt-5 flex w-full items-center justify-center border-t-[0.3px] border-gray-300 py-1">
+                            {" "}
+                            <div className="mt-1 pt-1 text-[13px] font-medium text-black">View Reports</div>
+                        </div>
+                    </div>
+                )}
                 <div className="flex items-center justify-between">
                     <h2 className="text-lg font-semibold">{title}</h2>
                     <img

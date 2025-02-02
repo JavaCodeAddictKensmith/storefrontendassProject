@@ -55,12 +55,7 @@ export const Sidebar = forwardRef(({ collapsed }, ref) => {
 
                 {/* button section */}
 
-                <div
-                    onClick={() => {
-                        dispatch(logout());
-                    }}
-                    className="mt-4 flex w-full"
-                >
+                <div className="mt-4 flex w-full">
                     <button className="w-full items-center justify-center rounded-md bg-[#EBECEE] px-4 py-2 text-[14px]">View Shop</button>
                 </div>
 

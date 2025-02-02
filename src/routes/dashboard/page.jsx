@@ -9,14 +9,7 @@ import globalIcon from "@/assets/svgs/global.svg";
 
 import tickSqaureIcon from "@/assets/svgs/tick-square.svg";
 import calenderIcon from "@/assets/svgs/calendar-2.svg";
-import arrow3Icon from "@/assets/svgs/arrow-3.svg";
-import googleIcon from "@/assets/svgs/googleblue.svg";
-import faceBookIcon from "@/assets/svgs/facebookicon.svg";
-import instagramIcon from "@/assets/svgs/instagramicon.svg";
-import twitterIcon from "@/assets/svgs/twitter.svg";
-import Card from "../../layouts/components/Card";
-import { NavLink, Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
 import { useEffect, useMemo, useState } from "react";
 import LandingPage from "./pages/LandingPage";
 import RecordHistory from "./pages/Record";
@@ -26,7 +19,7 @@ const DashboardPage = () => {
     const MainComponent = () => {
         switch (activePage) {
             case "dashboard":
-                return <LandingPage />;
+                return <LandingPage setActiveTab={setActivePage} />;
             case "records-history":
                 return <RecordHistory data={records} />;
             default:

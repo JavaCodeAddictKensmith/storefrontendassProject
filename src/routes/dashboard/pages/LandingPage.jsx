@@ -1,24 +1,12 @@
 import { Search } from "lucide-react";
 
-import { useTheme } from "@/hooks/use-theme";
-
-import { Footer } from "@/layouts/footer";
-
-import documentTextIcon from "@/assets/svgs/document-text.svg";
-import globalIcon from "@/assets/svgs/global.svg";
-
-import tickSqaureIcon from "@/assets/svgs/tick-square.svg";
-import calenderIcon from "@/assets/svgs/calendar-2.svg";
 import arrow3Icon from "@/assets/svgs/arrow-3.svg";
-import googleIcon from "@/assets/svgs/googleblue.svg";
-import faceBookIcon from "@/assets/svgs/facebookicon.svg";
-import instagramIcon from "@/assets/svgs/instagramicon.svg";
-import twitterIcon from "@/assets/svgs/twitter.svg";
+
 import Card from "../../../layouts/components/Card";
 
 import { NavLink, Link } from "react-router-dom";
 
-const LandingPage = () => {
+const LandingPage = ({ setActiveTab }) => {
     // const { theme } = useTheme();
 
     const dummydum = [
@@ -26,6 +14,7 @@ const LandingPage = () => {
             id: "1",
             title: "Total Sales",
             topAmount: "30",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -69,7 +58,9 @@ const LandingPage = () => {
         {
             id: "2",
             title: "Store Sessions",
+
             topAmount: "20",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -114,6 +105,7 @@ const LandingPage = () => {
             id: "3",
             title: "Total Orders",
             topAmount: "2",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -158,6 +150,7 @@ const LandingPage = () => {
             id: "4",
             title: "Average Other Volume",
             topAmount: "3",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -202,6 +195,7 @@ const LandingPage = () => {
             id: "5",
             title: "Fulfilled Orders Over Time",
             topAmount: "9",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -246,6 +240,7 @@ const LandingPage = () => {
             id: "6",
             title: "Marketing Sales",
             topAmount: "12",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -291,6 +286,7 @@ const LandingPage = () => {
             id: "7",
             title: "Returning Customer Rate",
             topAmount: "18",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -336,6 +332,7 @@ const LandingPage = () => {
             id: "8",
             title: "Sales By Social Source",
             topAmount: "18",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -381,6 +378,7 @@ const LandingPage = () => {
             id: "9",
             title: "Top Selling Products",
             topAmount: "1",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Product" },
@@ -425,6 +423,7 @@ const LandingPage = () => {
             id: "10",
             title: "Sales By Traffic Source",
             topAmount: "5",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -469,6 +468,7 @@ const LandingPage = () => {
             id: "11",
             title: "Sessions By Location",
             topAmount: "0",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -513,6 +513,7 @@ const LandingPage = () => {
             id: "12",
             title: "Sessions By Social Source",
             topAmount: "0",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -554,6 +555,7 @@ const LandingPage = () => {
             id: "13",
             title: "Customer Lifetime Value (CLTV)",
             topAmount: "0",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Customer" },
@@ -592,6 +594,7 @@ const LandingPage = () => {
             id: "14",
             title: "Conversion Rate",
             topAmount: "0",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Customer" },
@@ -628,6 +631,7 @@ const LandingPage = () => {
             id: "15",
             title: "Sessions By Traffic Source",
             topAmount: "0",
+            description: "The number of others placed by the customers",
             data: {
                 headers: [
                     { id: 1, text: "Source" },
@@ -738,7 +742,7 @@ const LandingPage = () => {
                 <div className="flex items-center justify-between gap-3">
                     <div className="flex flex-col gap-y-2 p-2 transition-colors">
                         <div className="flex gap-2">
-                            <div className="flex items-center justify-center text-center text-[12px] text-[#252D3C]">12 results</div>
+                            <div className="flex items-center justify-center text-center text-[12px] text-[#252D3C]">{dummydum.length} results</div>
                         </div>
                     </div>
                 </div>
@@ -757,6 +761,8 @@ const LandingPage = () => {
                             title={cell.title}
                             topAmount={cell.topAmount}
                             data={cell.data}
+                            description={cell.description}
+                            setActiveTab={setActiveTab}
                         />
                     ))}
 
