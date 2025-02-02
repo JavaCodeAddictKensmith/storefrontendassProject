@@ -23,7 +23,6 @@ const LandingPage = ({ setActiveTab }) => {
         dispatch(fetchAccountTransactions());
         // dispatch(fetchUserAccountDetails());
     }, [dispatch]);
-    console.log("===Transas==", transactions);
 
     const [searchValue, setSearchValue] = useState(""); // To store the search input value
     const [activeFilter, setActiveFilter] = useState("");

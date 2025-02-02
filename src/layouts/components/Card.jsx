@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import documentTextIcon from "@/assets/svgs/document-text.svg";
 
-import globalIcon from "@/assets/svgs/global.svg";
-
-import tickSqaureIcon from "@/assets/svgs/tick-square.svg";
-import calenderIcon from "@/assets/svgs/calendar-2.svg";
-import arrow3Icon from "@/assets/svgs/arrow-3.svg";
 import googleIcon from "@/assets/svgs/googleblue.svg";
 import faceBookIcon from "@/assets/svgs/facebookicon.svg";
 import instagramIcon from "@/assets/svgs/instagramicon.svg";
@@ -395,19 +390,6 @@ const Card = ({ id, title, topAmount, data, setActiveTab, description, commerceS
         >
             <div className="mt-3 w-full overflow-x-auto pb-4">
                 <table className="w-full overflow-x-auto">
-                    {/* <thead className="bg-subtleGray w-full">
-                        <tr className="bg-unusualGray w-full">
-                            {data?.headers?.map((item) => (
-                                <td
-                                    className="text-xs font-semibold text-[#11192a]"
-                                    key={item.id}
-                                >
-                                    {item.text}
-                                </td>
-                            ))}
-                        </tr>
-                    </thead> */}
-
                     <tbody className=" ">
                         {data.rows.map((cell, idx) => {
                             return (

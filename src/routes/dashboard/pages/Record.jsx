@@ -1,19 +1,13 @@
 import { Search } from "lucide-react";
 
-import { useTheme } from "@/hooks/use-theme";
-
-import { Footer } from "@/layouts/footer";
-
-import tickSqaureIcon from "@/assets/svgs/tick-square.svg";
-import calenderIcon from "@/assets/svgs/calendar-2.svg";
 import arrow3Icon from "@/assets/svgs/arrow-3.svg";
 import TransitionScale from "../../../layouts/TransitionScale";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 // import { fetchSalesOverview } from "../../../appstate/api/dashboard";
-// import { fetchAccounTransactions } from "../../../appstate/slices/transactionSlice";
+// import { fetchAccounuserAccounts } from "../../../appstate/slices/userAccountslice";
 import { fetchUserRecordDetails } from "../../../appstate/slices/transactionSlice";
-import { useMemo } from "react";
+import { useMemo, useState, useCallback } from "react";
 
 const RecordHistory = () => {
     // const { theme } = useTheme();
@@ -32,6 +26,87 @@ const RecordHistory = () => {
 
     const records = useMemo(() => userAccounts, [userAccounts]);
     console.log("===userAccountsrecord==", userAccounts);
+
+    const [searchValue, setSearchValue] = useState(""); // To store the search input value
+    const [activeFilter, setActiveFilter] = useState("");
+    const [filteredData, setFilteredData] = useState(userAccounts || []); // To store the filtered data
+    const data = useMemo(() => userAccounts || [], [userAccounts]);
+
+    useEffect(() => {
+        const filterValue = activeFilter || "";
+
+        if (filterValue === "") {
+            setFilteredData(data); // Show all items
+        } else if (filterValue === "Acquisition") {
+            setFilteredData(data.filter((bid) => bid.category === "Acquisition"));
+        } else if (filterValue === "Behavior") {
+            setFilteredData(data.filter((bid) => bid.category === "Behavior"));
+        } else if (filterValue === "Customers") {
+            setFilteredData(data.filter((bid) => bid.category === "Customers"));
+        } else if (filterValue === "Finance") {
+            setFilteredData(data.filter((bid) => bid.category === "Finance"));
+        } else if (filterValue === "Fraud") {
+            setFilteredData(data.filter((bid) => bid.category === "Fraud"));
+        } else if (filterValue === "Inventory") {
+            setFilteredData(data.filter((bid) => bid.category === "Inventory"));
+        } else if (filterValue === "Marketing") {
+            setFilteredData(data.filter((bid) => bid.category === "Marketing"));
+        } else if (filterValue === "Orders") {
+            setFilteredData(data.filter((bid) => bid.category === "Orders"));
+        } else if (filterValue === "Profit Margin") {
+            setFilteredData(data.filter((bid) => bid.category === "Profit Margin"));
+        } else if (filterValue === "Sales") {
+            setFilteredData(data.filter((bid) => bid.category === "Sales"));
+        } else if (filterValue === "Marketing Sales") {
+            setFilteredData(data.filter((bid) => bid.category === "Marketing Sales"));
+        }
+    }, [activeFilter, data]);
+
+    useEffect(() => {
+        setFilteredData(userAccounts || []); // Reset filtered data when new data is fetched
+    }, [userAccounts]);
+
+    const filterData = useCallback(() => {
+        let updatedData = [...data];
+
+        // Apply filter by type
+        if (activeFilter) {
+            updatedData = updatedData.filter((item) => item.title === activeFilter);
+        }
+
+        // Apply search filter
+        if (searchValue) {
+            updatedData = updatedData.filter((item) => {
+                const lowerSearch = searchValue.toLowerCase();
+                return (
+                    item.name.toLowerCase().includes(lowerSearch) ||
+                    item.category.toLowerCase().includes(lowerSearch) ||
+                    item.lastView.toLowerCase().includes(lowerSearch)
+                );
+            });
+        }
+
+        setFilteredData(updatedData);
+    }, [data, activeFilter, searchValue, setFilteredData]);
+
+    useEffect(() => {
+        filterData();
+    }, [filterData]);
+
+    // Synchronize data when filters or data chang
+
+    // Synchronize data when filters or data change
+    useEffect(() => {
+        filterData();
+    }, [filterData]);
+
+    const handleFilterChangeOne = (e) => {
+        setActiveFilter(e.target.value);
+    };
+
+    const handleSearchChangeOne = (e) => {
+        setSearchValue(e.target.value);
+    };
 
     if (recordsLoading) return <p>Loading...</p>;
     if (recordsError) return <p>Error occure</p>;
@@ -63,6 +138,8 @@ const RecordHistory = () => {
                                 id="search"
                                 placeholder="Search reports"
                                 className="w-full bg-transparent text-[16px] text-slate-900 outline-0 placeholder:text-[#777F8C]"
+                                value={searchValue}
+                                onChange={handleSearchChangeOne}
                             />
                         </div>
 
@@ -82,25 +159,33 @@ const RecordHistory = () => {
                             <select
                                 className="flex flex-col gap-y-2 rounded-lg bg-white p-2 text-[14px] shadow-md transition-colors has-[input:focus]:border-none dark:border-slate-700 dark:bg-slate-900"
                                 // onChange={(e) => {}}
+                                onChange={handleFilterChangeOne}
+                                value={activeFilter}
                             >
                                 <option
                                     value=""
-                                    key="all-bids"
+                                    disabled
+                                    selected
                                 >
-                                    Category
+                                    Filter by{" "}
                                 </option>
                                 <option
-                                    value="BID_ACTIVE"
-                                    key="bid-active"
+                                    value=""
+                                    selected
                                 >
-                                    Transact
+                                    All
                                 </option>
-                                <option
-                                    value="POSTED"
-                                    key="posted-request"
-                                >
-                                    BlockChain
-                                </option>
+
+                                <option value={"Acquisition"}>Acquisition</option>
+                                <option value="Behavior">Behavior</option>
+                                <option value="Customers">Customers</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Fraud">Fraud</option>
+                                <option value="Inventory">Inventory</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Orders">Orders</option>
+                                <option value="Profit Margin">Profit Margin</option>
+                                <option value="Sales">Sales</option>
                             </select>
                         </div>
                     </div>
@@ -133,7 +218,7 @@ const RecordHistory = () => {
                             </thead>
 
                             <tbody className="">
-                                {records?.map((cell, idx) => {
+                                {filteredData?.map((cell, idx) => {
                                     return (
                                         <>
                                             <tr
