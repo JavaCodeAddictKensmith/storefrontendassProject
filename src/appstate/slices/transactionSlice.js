@@ -19,7 +19,7 @@ const initialState = {
 const TRANSACTIONS_API_URL = "https://677fb6eb0476123f76a7b789.mockapi.io/api/v2/accTransactions";
 const USER_ACCOUNTS_API_URL = "https://677fb6eb0476123f76a7b789.mockapi.io/api/v2/dashboardInfo";
 
-export const fetchUserAccountDetails = createAsyncThunk("transactions/fetchUserAccountDetails", async () => {
+export const fetchUserRecordDetails = createAsyncThunk("transactions/fetchUserAccountDetails", async () => {
     const response = await axios.get(USER_ACCOUNTS_API_URL);
     return response.data;
 });
@@ -49,15 +49,15 @@ const transactionSlice = createSlice({
             });
 
         builder
-            .addCase(fetchUserAccountDetails.pending, (state) => {
+            .addCase(fetchUserRecordDetails.pending, (state) => {
                 state.userAccounts.loading = true;
                 state.userAccounts.error = null;
             })
-            .addCase(fetchUserAccountDetails.fulfilled, (state, action) => {
+            .addCase(fetchUserRecordDetails.fulfilled, (state, action) => {
                 state.userAccounts.loading = false;
                 state.userAccounts.data = action.payload;
             })
-            .addCase(fetchUserAccountDetails.rejected, (state, action) => {
+            .addCase(fetchUserRecordDetails.rejected, (state, action) => {
                 state.userAccounts.loading = false;
                 state.userAccounts.error = action.error.message;
             });

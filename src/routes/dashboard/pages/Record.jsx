@@ -8,9 +8,33 @@ import tickSqaureIcon from "@/assets/svgs/tick-square.svg";
 import calenderIcon from "@/assets/svgs/calendar-2.svg";
 import arrow3Icon from "@/assets/svgs/arrow-3.svg";
 import TransitionScale from "../../../layouts/TransitionScale";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+// import { fetchSalesOverview } from "../../../appstate/api/dashboard";
+// import { fetchAccounTransactions } from "../../../appstate/slices/transactionSlice";
+import { fetchUserRecordDetails } from "../../../appstate/slices/transactionSlice";
+import { useMemo } from "react";
 
-const RecordHistory = ({ data }) => {
+const RecordHistory = () => {
     // const { theme } = useTheme();
+
+    const dispatch = useDispatch();
+
+    // Selecting state from Redux store
+    const { data: userAccounts, loading: recordsLoading, error: recordsError } = useSelector((state) => state.transactions.userAccounts);
+
+    // const { data: userAccounts, loading: userAccountsLoading, error: userAccountsError } = useSelector((state) => state.transactions.userAccounts);
+
+    useEffect(() => {
+        dispatch(fetchUserRecordDetails());
+        // dispatch(fetchUserAccountDetails());
+    }, [dispatch]);
+
+    const records = useMemo(() => userAccounts, [userAccounts]);
+    console.log("===userAccountsrecord==", userAccounts);
+
+    if (recordsLoading) return <p>Loading...</p>;
+    if (recordsError) return <p>Error occure</p>;
 
     return (
         <TransitionScale>
@@ -85,7 +109,9 @@ const RecordHistory = ({ data }) => {
                     <div className="flex items-center justify-between gap-3">
                         <div className="flex flex-col gap-y-2 p-2 transition-colors">
                             <div className="flex gap-2">
-                                <div className="flex items-center justify-center text-center text-[12px] text-[#252D3C]">{data.length} results</div>
+                                <div className="flex items-center justify-center text-center text-[12px] text-[#252D3C]">
+                                    {records.length} results
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -107,7 +133,7 @@ const RecordHistory = ({ data }) => {
                             </thead>
 
                             <tbody className="">
-                                {data?.map((cell, idx) => {
+                                {records?.map((cell, idx) => {
                                     return (
                                         <>
                                             <tr

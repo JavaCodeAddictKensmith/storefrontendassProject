@@ -21,7 +21,7 @@ const DashboardPage = () => {
             case "dashboard":
                 return <LandingPage setActiveTab={setActivePage} />;
             case "records-history":
-                return <RecordHistory data={records} />;
+                return <RecordHistory />;
             default:
                 return null;
         }
@@ -62,8 +62,20 @@ const DashboardPage = () => {
             { id: "24", name: "Store sessions", category: "Inventory", lastView: "" },
             { id: "25", name: "Sales Attribute to Marketing", category: "Marketing", lastView: "" },
             { id: "26", name: "Sales Attribute to Marketing", category: "Marketing", lastView: "" },
-            { id: "27", name: "Fulfilment over time", category: "Orders", lastView: "" },
+            { id: "28", name: "Fulfilment over time", category: "Orders", lastView: "" },
             { id: "27", name: "Fulfilment  delivery over time", category: "Orders", lastView: "" },
+            { id: "28", name: "Fulfilment over time", category: "Orders", lastView: "" },
+            { id: "29", name: "Fulfilment  delivery over time", category: "Orders", lastView: "" },
+            { id: "30", name: "Profit By POS", category: "Orders", lastView: "Profit Margin" },
+            { id: "31", name: "Profit By Location", category: "Profit Margin", lastView: "" },
+            { id: "32", name: "Profit By Product Variant SKU", category: "Profit Margin", lastView: "" },
+            { id: "33", name: "Sales by Product", category: "Sales", lastView: "" },
+            { id: "34", name: "Average Orders time", category: "Sales", lastView: "" },
+            { id: "35", name: "Total sales", category: "Sales", lastView: "" },
+            { id: "36", name: "Sales by Customer Name", category: "Sales", lastView: "" },
+            { id: "37", name: "Sales by discount", category: "Sales", lastView: "" },
+            { id: "38", name: "Sales by Product Variat SKU", category: "Sales", lastView: "" },
+            { id: "39", name: "Sales by brand", category: "Sales", lastView: "" },
         ],
         [],
     );
