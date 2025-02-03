@@ -219,7 +219,7 @@ const Login = () => {
                             >
                                 Sign In
                             </button>
-                            <div className="text-gray-60 font-poppins items-center justify-start text-[14px] font-semibold text-[#344054]">
+                            <div className="text-gray-60 items-center justify-start font-poppins text-[14px] font-semibold text-[#344054]">
                                 Don’t have an account?{" "}
                                 <Link
                                     className="font-poppins text-[14px] font-semibold text-[#9A1725]"
@@ -229,7 +229,7 @@ const Login = () => {
                                 </Link>
                             </div>
                         </form>
-                        <div className="text-gray-60 font-poppins mt-4 items-center justify-start text-start text-[14px] font-medium leading-normal text-[#777F8C]">
+                        <div className="text-gray-60 mt-4 items-center justify-start text-start font-poppins text-[14px] font-medium leading-normal text-[#777F8C]">
                             Please visit{" "}
                             <a
                                 href="#"
