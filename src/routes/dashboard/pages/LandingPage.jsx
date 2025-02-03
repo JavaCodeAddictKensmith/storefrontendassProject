@@ -133,7 +133,7 @@ const LandingPage = ({ setActiveTab }) => {
 
             <div className="mt-5 flex w-full flex-wrap items-center justify-between gap-4">
                 {/* first layer */}
-                <div className="flex items-center justify-between gap-3">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                     {/* <div className="flex flex-col gap-y-2 rounded-lg shadow-md  bg-white p-2 transition-colors dark:border-slate-700 dark:bg-slate-900">
         <div className="flex gap-2">
             <img src={documentTextIcon} alt="Analytics Icon" className=" flex-shrink-0   w-4"  />

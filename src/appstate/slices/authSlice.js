@@ -34,10 +34,10 @@ const authSlice = createSlice({
             if (iscorrectUser) {
                 state.isAuthenticated = true;
                 state.user = storedUser;
-                console.log("Logged in user:", storedUser);
+                // console.log("Logged in user:", storedUser);
                 toast.success("Logged in successfully!");
             } else {
-                toast.error("Invalid email or password!");
+                console.error("Invalid email or password!");
             }
         },
         logout: (state) => {
