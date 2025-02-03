@@ -29,8 +29,16 @@ const DashboardPage = () => {
 
     return (
         <div className="flex flex-col gap-y-4">
-            <div className="title">Analytics</div>
+            {/* <div className="title">Analytics</div> */}
 
+            {activePage == "records-history" ? (
+                <div className="flex items-center">
+                    <div className="text-lg font-semibold text-[#777F8C] transition-colors">Analytics</div>
+                    <div className="title ml-3">- Reports</div>
+                </div>
+            ) : (
+                <div className="title">Analytics</div>
+            )}
             {/* Next Section */}
 
             <div className="mt-5 flex w-full flex-wrap items-center justify-between gap-4 border-b-[1px] border-slate-300 py-4">

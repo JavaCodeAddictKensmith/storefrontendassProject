@@ -1,85 +1,26 @@
 <br />
-<div align="center">
-    <img src="public/favicon-light.svg" style="vertical-align: middle;" width="48" height="48"/>
-    <br />
-    <br />
-    <p>
-        Build a Modern Dashboard UI Design using React JS, TailwindCSS.
-</p>
-<a href="https://youtu.be/uHxZMmvQXHQ">Watch Tutorial</a>
 
-</div>
+<!-- INSTRUCTION ON HOW TO USE THE APP -->
 
-<br />
+##TECHNOLOGIES IN USE
 
-![Dashboard UI Design](./public/Dashboard%20UI%20Design.png)
+- **Frontend**: HTML, Tailwind css, JavaScript, React,Readuxjs/toolkit, formick, yop, axios,MockaPI.IO,jSON Placeholder,lucid-react , localStorage,etc
 
-## 🗒️ Table of Contents
+<!--  -->
 
-1. [💬 Introduction](#introduction)
-2. [🛠️ Tools](#tools)
-3. [✨ Features](#features)
-4. [🚀 Getting Started](#getting-started)
-5. [💻 Code Snippets](#code-snippets)
-6. [☕ Support Me](#support-me)
+##How to run the app
 
-## <a name="introduction">💬 Introduction</a>
+1. Clone the repository
+2. Ensure you have the node version that is up to date`npm install`
+3. Install the dependencies by running `npm install`
+4. Run npm run dev
+5. Open your browser and navigate to `http://localhost:3000`
+6. You can now interact with the app
 
-Welcome to the Dashboard UI Design repository! This project is a comprehensive guide to building a clean, user-friendly, and fully responsive dashboard interface. Whether you're new to UI/UX design or an experienced developer looking to enhance your skills, this repository provides essential resources to help you create an efficient and visually organized dashboard experience. Explore best practices for crafting intuitive layouts, managing data visualization, and ensuring seamless user interaction.
+#### Brief Features Walkthrough
 
-## <a name="tools">🛠️ Tools</a>
-
--   [React JS](https://react.dev)
--   [TailwindCSS](https://tailwindcss.com/)
--   [Lucide Icons](https://lucide.dev/)
--   [React Router](https://reactrouter.com/en/main)
--   [Recharts](https://recharts.org/en-US/)
-
-## <a name="features">✨ Features</a>
-
--   **Responsive Design:** Ensures your portfolio looks great on desktops, tablets, and mobile devices.
--   **Clean and Modern Layout:** A professional design that highlights your projects, skills, and experience.
-
-## <a name="getting-started">🚀 Getting Started</a>
-
-To get started follow these steps:
-
-#### Cloning the Repository
-
-Using CLI
-
-```bash
-git clone https://github.com/xdcode2/dashboard-ui-design.git
-```
-
-**\*\*_Ensure you have installed [Git](https://git-scm.com) on your machine._**
-
-or using GitHub:
-
--   Go to the project [repository](https://github.com/xdcode2/dashboard-ui-design) on my GitHub page
--   Click on the green button on the top 👆
--   Click Download ZIP
-
-#### Installation
-
-Install the project dependencies using npm:
-
-```bash
-npm install
-```
-
-**\*\*_Ensure you have installed [NodeJS](https://nodejs.org/en) on your machine._**
-
-#### Running the Project
-
-```bash
-npm run dev
-```
-
-**\*\*_This project uses [Vite](https://vitejs.dev)._**
-
-## <a name="support-me">☕ Support Me</a>
-
-[![ko-fi](https://img.shields.io/static/v1?message=Support%20me%20on%20ko-fi&logo=kofi&label=&color=ff5e5b&logoColor=white&labelColor=&style=for-the-badge)](https://ko-fi.com/J3J1NMYT7)
-
-[![youtube](https://img.shields.io/static/v1?message=Subscribe&logo=youtube&label=&color=FF0000&logoColor=white&labelColor=&style=for-the-badge)](https://www.youtube.com/@_xdcode_ "XD Code")
+The signUp Page is linked to the login page when one clicks on dont account, sign up,
+The login page is linked to the dashboard page when one clicks on login button
+To logout,click the topright of thenavbar at the end. There would be drop down and you can select logoutto logout whcih is implemented
+To get to record history page, click on the card on the dash
+board or click on the reports button on the top of the page.All Filter and search functionality are well implemented well implemented
