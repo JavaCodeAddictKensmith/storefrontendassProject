@@ -4,8 +4,7 @@ import arrow3Icon from "@/assets/svgs/arrow-3.svg";
 import TransitionScale from "../../../layouts/TransitionScale";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-// import { fetchSalesOverview } from "../../../appstate/api/dashboard";
-// import { fetchAccounuserAccounts } from "../../../appstate/slices/userAccountslice";
+
 import { fetchUserRecordDetails } from "../../../appstate/slices/transactionSlice";
 import { useMemo, useState, useCallback } from "react";
 
@@ -25,7 +24,7 @@ const RecordHistory = () => {
     }, [dispatch]);
 
     const records = useMemo(() => userAccounts, [userAccounts]);
-    console.log("===userAccountsrecord==", userAccounts);
+    // console.log("===userAccountsrecord==", userAccounts);
 
     const [searchValue, setSearchValue] = useState(""); // To store the search input value
     const [activeFilter, setActiveFilter] = useState("");
@@ -71,7 +70,7 @@ const RecordHistory = () => {
 
         // Apply filter by type
         if (activeFilter) {
-            updatedData = updatedData.filter((item) => item.title === activeFilter);
+            updatedData = updatedData.filter((item) => item.category === activeFilter);
         }
 
         // Apply search filter
@@ -96,9 +95,6 @@ const RecordHistory = () => {
     // Synchronize data when filters or data chang
 
     // Synchronize data when filters or data change
-    useEffect(() => {
-        filterData();
-    }, [filterData]);
 
     const handleFilterChangeOne = (e) => {
         setActiveFilter(e.target.value);
@@ -244,20 +240,6 @@ const RecordHistory = () => {
                         </table>
                     </div>
                     {/* Second Card */}
-
-                    {/* {dummydum.map((cell, idx) => (
-                <Card
-                    id={cell.id}
-                    key={cell.id}
-                    title={cell.title}
-                    topAmount={cell.topAmount}
-                    data={cell.data}
-                />
-            ))} */}
-
-                    {/* third */}
-
-                    {/* */}
                 </div>
             </div>
         </TransitionScale>

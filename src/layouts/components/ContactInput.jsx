@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const countryCodes = [
     { code: "+1", country: "" },

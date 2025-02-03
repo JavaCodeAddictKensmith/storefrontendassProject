@@ -1,15 +1,14 @@
 import { useState } from "react";
 
-import { Bell, ChevronsLeft, Moon, Search, Sun } from "lucide-react";
+import { ChevronsLeft } from "lucide-react";
 
-import profileImg from "@/assets/profile-image.jpg";
 import topLogoImg from "@/assets/svgs/LOGO.svg";
 import topbell from "@/assets/svgs/top-bell.svg";
 import topPerson from "@/assets/svgs/navbarperson.svg";
 import toparrowdown from "@/assets/svgs/arrow-down.svg";
 import searchNav from "@/assets/svgs/search-nav.svg";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import { logout } from "../appstate/slices/authSlice";
 
 // search-nav.
@@ -18,7 +17,7 @@ import PropTypes from "prop-types";
 
 export const Header = ({ collapsed, setCollapsed, isDesktop }) => {
     const [profileDropdown, setProfileDropdown] = useState(false);
-    const navigate = useNavigate();
+
     const dispatch = useDispatch();
 
     const handleDropdownClick = () => {

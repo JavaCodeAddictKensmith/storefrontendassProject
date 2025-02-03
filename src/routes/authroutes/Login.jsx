@@ -13,24 +13,10 @@ import { login } from "../../appstate/slices/authSlice";
 import { useFormik } from "formik";
 
 import close from "@/assets/svgs/close-circle.svg";
-import toast from "react-hot-toast";
+
 import { signUpValidationSchema } from "../../validation/SignUpValidation";
 
 const Login = () => {
-    // const { login } = useAuth();
-    // const [email, setEmail] = useState("");
-    // const [password, setPassword] = useState("");
-    // const navigate = useNavigate();
-    // const [user, setUser] = [localStorage.getItem("user")];
-
-    // const handleLogin = () => {
-    //     // login(email, password);
-
-    //     if (user) {
-    //         navigate("/");
-    //     }
-    // };
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -71,11 +57,6 @@ const Login = () => {
                         password: values.password,
                     }),
                 );
-
-                // if (isAuthenticated) {
-                //     navigate("/");
-                //     // console.log("User logged in:", localStorage.getItem("user"));
-                // }
             };
 
             handleLogin();
@@ -115,11 +96,7 @@ const Login = () => {
                         >
                             <div>
                                 <label className="mb-1 block text-[15px] text-[#252D3C]">Name</label>
-                                {/* <input
-                                type="text"
-                                className="w-full rounded-md border px-3 py-2 focus:outline-none focus:ring focus:ring-gray-300"
-                                placeholder="Enter your name"
-                            /> */}
+
                                 <InputField
                                     className={"h-[48px] w-full rounded-md border-[0.6px] border-gray-300 bg-[#F9F9FA] px-3 py-5 focus:outline-none"}
                                     placeholder={"Name"}

@@ -101,9 +101,6 @@ const LandingPage = ({ setActiveTab }) => {
     // Synchronize data when filters or data chang
 
     // Synchronize data when filters or data change
-    useEffect(() => {
-        filterData();
-    }, [filterData]);
 
     const handleFilterChangeOne = (e) => {
         setActiveFilter(e.target.value);

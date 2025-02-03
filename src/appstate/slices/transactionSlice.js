@@ -1,8 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const API_URL = "https://jsonplaceholder.typicode.com/posts";
-
 const initialState = {
     transactions: {
         data: [],
@@ -15,9 +13,11 @@ const initialState = {
         error: null,
     },
 };
+// const baseURL = process.env.REACT_APP_BASE_URL;
+const baseURL = import.meta.env.VITE_BASE_URL;
 
-const TRANSACTIONS_API_URL = "https://677fb6eb0476123f76a7b789.mockapi.io/api/v2/accTransactions";
-const USER_ACCOUNTS_API_URL = "https://677fb6eb0476123f76a7b789.mockapi.io/api/v2/dashboardInfo";
+const TRANSACTIONS_API_URL = `${baseURL}/api/v2/accTransactions`;
+const USER_ACCOUNTS_API_URL = `${baseURL}/api/v2/dashboardInfo`;
 
 export const fetchUserRecordDetails = createAsyncThunk("transactions/fetchUserAccountDetails", async () => {
     const response = await axios.get(USER_ACCOUNTS_API_URL);

@@ -507,15 +507,6 @@ const Card = ({ id, title, topAmount, data, setActiveTab, description, commerceS
         }
     };
 
-    //     switch (activeTab) {
-    //         case "default":
-    //           return <Default />;
-    //         case "saved":
-    //           return <Saved />;
-    //         default:
-    //           return null;
-    // };
-
     const [swap, setSwap] = useState(false);
 
     return (

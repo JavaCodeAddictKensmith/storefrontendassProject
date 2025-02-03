@@ -1,12 +1,10 @@
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
-
-import { ThemeProvider } from "@/contexts/theme-context";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "@/routes/layout";
 import DashboardPage from "@/routes/dashboard/page";
 import ProtectedRoute from "./routes/authroutes/ProtectedRoutes";
 import SignupPage from "./routes/authroutes/SignUpPage";
-import LandingPage from "./routes/dashboard/pages/LandingPage";
+
 import Login from "./routes/authroutes/Login";
 
 function App() {

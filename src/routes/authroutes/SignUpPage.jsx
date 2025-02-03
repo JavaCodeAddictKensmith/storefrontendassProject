@@ -48,6 +48,7 @@ const SignupPage = () => {
                     );
                     // alert("Signup successful! Please log in.");
                     toast.success("Signup successful! Please log in.");
+
                     // console.log("successfull");
                     navigate("/login");
                 } else {
