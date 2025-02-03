@@ -38,6 +38,7 @@ const authSlice = createSlice({
                 toast.success("Logged in successfully!");
             } else {
                 console.error("Invalid email or password!");
+                alert("Invalid credentails!");
             }
         },
         logout: (state) => {
